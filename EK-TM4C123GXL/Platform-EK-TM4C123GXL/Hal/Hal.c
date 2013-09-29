@@ -1,7 +1,3 @@
-/*
- * ============ Platform Configuration ============
- */
-
 #include "Hal.h"
 #include "Em_Message.h"
 

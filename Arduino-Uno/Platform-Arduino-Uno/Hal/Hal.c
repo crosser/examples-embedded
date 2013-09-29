@@ -1,7 +1,3 @@
-/*
- * ============ Platform Configuration ============
- */
-
 #include "Hal.h"
 #include "Em_Message.h"
 
@@ -270,6 +266,7 @@ static void postEvent(uint8_t handlerId) {
 
 /* -------- INTERRUPT SERVICE ROUTINES -------- */
 
+/* Hal_rxIsr */
 ISR(USART_RX_vect) {
     Em_Message_startRx();
     uint8_t b = EAP_RX_BUF;
@@ -280,6 +277,7 @@ ISR(USART_RX_vect) {
     EAP_RX_ACK_SET();
 }
 
+/* Hal_txAckIsr */
 ISR(INT0_vect) {
     uint8_t b;
     DEBUG1_ON(); DEBUG1_OFF();
@@ -290,6 +288,7 @@ ISR(INT0_vect) {
     EAP_TX_INT_CLR();
 }
 
+/* Hal_timerIsr */
 ISR(TIMER1_COMPA_vect) {
     postEvent(TICK_HANDLER_ID);
 }
