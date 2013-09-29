@@ -17,6 +17,11 @@
 #define LED_READ()                  (PORTB & LED_BIT)
 #define LED_TOGGLE()                (PORTB ^= LED_BIT)
 
+#define CONNECTED_BIT               (1 << 2)
+#define CONNECTED_CONFIG()          (DDRB |= CONNECTED_BIT)
+#define CONNECTED_ON()              (PORTB |= CONNECTED_BIT)
+#define CONNECTED_OFF()             (PORTB &= ~CONNECTED_BIT)
+
 #define EAP_RX_ACK_BIT              (1 << 4)
 #define EAP_RX_ACK_CONFIG()         (DDRD |= EAP_RX_ACK_BIT)
 #define EAP_RX_ACK_SET()            (PORTD |= EAP_RX_ACK_BIT)
@@ -71,6 +76,7 @@ void Hal_buttonEnable(Hal_Handler handler) {
 }
 
 void Hal_connected(void) {
+    CONNECTED_ON();
 }
 
 void Hal_debugOn(uint8_t line) {
@@ -126,6 +132,7 @@ void Hal_delay(uint16_t msecs) {
 }
 
 void Hal_disconnected(void) {
+    CONNECTED_OFF();
 }
 
 void Hal_init() {
@@ -137,6 +144,9 @@ void Hal_init() {
 
     LED_CONFIG();
     LED_OFF();
+
+    CONNECTED_CONFIG();
+    CONNECTED_OFF();
 
     EAP_TX_ACK_CONFIG();
     EAP_RX_ACK_CONFIG();
