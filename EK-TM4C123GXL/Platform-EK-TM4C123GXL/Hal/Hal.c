@@ -2,7 +2,7 @@
  * ============ Platform Configuration ============
  */
 
-#include "hal.h"
+#include "Hal.h"
 #include "Em_Message.h"
 
 #include "lm4f120h5qr_pin_map.h"
