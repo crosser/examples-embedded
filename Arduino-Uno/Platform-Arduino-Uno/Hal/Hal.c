@@ -280,9 +280,7 @@ ISR(USART_RX_vect) {
 /* Hal_txAckIsr */
 ISR(INT0_vect) {
     uint8_t b;
-    DEBUG1_ON(); DEBUG1_OFF();
     if (Em_Message_getByte(&b)) {
-        DEBUG2_ON(); DEBUG2_OFF();
         EAP_TX_BUF = b;
     }
     EAP_TX_INT_CLR();
