@@ -1,0 +1,95 @@
+ifeq (,$(findstring Windows,$(OS)))
+    SEP = :
+else
+    SEP = ;
+endif
+
+MCU = atmega328p
+
+OUTDIR = Output
+
+include $(PLATFORM)/init.mk
+
+PROGRAM-PROJ ?= ../$(APPNAME)-Program
+SCHEMA-PROJ ?= ../$(APPNAME)-Schema
+EMBUILDER ?=
+
+SCHEMAFILE = $(SCHEMA-PROJ)/$(APPNAME).ems
+EM = $(SCHEMA-PROJ)/Em
+HAL = $(PLATFORM)/Hal
+MAIN = $(APPNAME)-Prog
+OUTFILE = $(OUTDIR)/$(MAIN).out
+HEXFILE = $(OUTDIR)/$(MAIN).hex
+OBJECTS = $(OUTDIR)/$(MAIN).obj $(OUTDIR)/$(APPNAME).obj $(OUTDIR)/Hal.obj 
+
+TOOLS = c:/progs/WinAVR-20100110
+CC = $(TOOLS)/bin/avr-gcc
+OBJCOPY = $(TOOLS)/bin/avr-objcopy
+SIZE = $(TOOLS)/bin/avr-size
+LOAD = c:/emmoco/workspace/Platform-Arduino-Uno/Avr/avrdude -C $(PLATFORM)/Avr/avrdude.conf -c stk500v1 -p $(MCU) -P COM7
+COPTS = -std=gnu99 -w -g -O3 -fpack-struct=1 -ffunction-sections -fdata-sections -c -mmcu=$(MCU)
+CFLAGS = -I$(HAL) -I$(EM) -I$(TOOLS)/avr/include -I($(COPTS)
+LFLAGS = -mmcu=$(MCU) --entry __init -u __init -nostdlib -Wl,-Map=$(OUTDIR)/$(MAIN).map,--gc-sections
+#LFLAGS = -mmcu=$(MCU) --entry __init -u __init -nostdlib -Wl,-Map=$(OUTDIR)/$(MAIN).map,--gc-sections $(PLATFORM)/Avr/crt0.o -T $(PLATFORM)/Avr/lnk.cmd
+RMFILES = *.out *.map *.bin *.obj
+VPATH = $(PROGRAM-PROJ)$(SEP)$(EM)$(SEP)$(HAL)
+
+build: $(OUTDIR) $(OUTFILE)
+
+load: $(OUTFILE)
+	$(OBJCOPY) -O ihex $(OUTFILE) $(HEXFILE)
+	$(LOAD) -q -q -V -F -U flash:w:$(HEXFILE) 2>&1
+
+$(OUTFILE): $(OBJECTS)
+	$(CC) $(LFLAGS) -o $@ $(PLATFORM)/Avr/crt0.o $^ -T $(PLATFORM)/Avr/lnk.cmd
+	$(SIZE) $@
+
+$(OUTDIR):
+ifeq (,$(findstring Windows,$(OS)))
+	mkdir $(OUTDIR)
+else
+	cmd /c mkdir $(OUTDIR)
+endif
+
+$(OUTDIR)/$(MAIN).obj: $(MAIN).c $(EM)/$(APPNAME).c
+	$(CC) $< -o $@ $(CFLAGS) 
+
+$(OUTDIR)/$(APPNAME).obj: $(EM)/$(APPNAME).c
+	$(CC) $< -o $@ $(CFLAGS) 
+
+$(EM)/$(APPNAME).c: $(SCHEMAFILE)
+ifneq (,$(EMBUILDER))
+	$(EMBUILDER) -v --root=$(<D) --outdir=$(EM) --jsondir=$(EM) $<
+else
+	@echo terminating because of prior schema errors 1>&2
+	@exit 1
+endif
+
+$(OUTDIR)/Hal.obj: $(HAL)/Hal.c
+	$(CC) $< -o $@ $(CFLAGS) 
+
+local-clean:
+ifeq (,$(findstring Windows,$(OS)))
+	rm -rf $(OUTDIR)
+else
+ifneq (,$(wildcard $(OUTDIR)))
+	cmd /c rmdir /q /s $(subst /,\,$(OUTDIR))
+endif
+endif
+
+clean: local-clean
+ifeq (,$(findstring Windows,$(OS)))
+	rm -rf $(EM)
+else
+ifneq (,$(wildcard $(EM)))
+	cmd /c rmdir /q /s $(subst /,\,$(EM))
+endif
+endif
+
+out-check:
+ifeq (,$(wildcard $(OUTFILE)))
+	@echo error: $(OUTFILE): No such file or directory 1>&2
+	@exit 1
+endif
+
+.PHONY: all load clean local-clean out-check

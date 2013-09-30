@@ -1,0 +1,17 @@
+version = "1.0.0";
+description = "Compound types examples";
+
+schema Ex_Compound {
+
+    typedef string<12> Label;
+
+    struct Info {
+        Label label;
+        int16 value;  
+    };
+    
+    Info infoArray[3];
+
+    uint8 infoArraySize { readonly };
+
+};
