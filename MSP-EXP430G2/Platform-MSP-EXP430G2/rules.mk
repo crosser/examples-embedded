@@ -13,6 +13,7 @@ include $(PLATFORM)/init.mk
 PROGRAM-PROJ ?= ../$(APPNAME)-Program
 SCHEMA-PROJ ?= ../$(APPNAME)-Schema
 EMBUILDER ?=
+TOOLS ?= $(EMMOCO-ROOT)/msptools/bin
 
 SCHEMAFILE = $(SCHEMA-PROJ)/$(APPNAME).ems
 EM = $(SCHEMA-PROJ)/Em
@@ -22,12 +23,12 @@ OUTFILE = $(OUTDIR)/$(MAIN).out
 HEXFILE = $(OUTDIR)/$(MAIN).hex
 OBJECTS = $(OUTDIR)/$(MAIN).obj $(OUTDIR)/$(APPNAME).obj $(OUTDIR)/Hal.obj 
 
-CC = msp430-gcc
-LD = msp430-ld
-OBJCOPY = msp430-objcopy
-SIZE = msp430-size
-MSPDEBUG = mspdebug
-MSP430FLASHER = MSP430Flasher
+CC = $(TOOLS)/msp430-gcc
+LD = $(TOOLS)/msp430-ld
+OBJCOPY = $(TOOLS)/msp430-objcopy
+SIZE = $(TOOLS)/msp430-size
+MSPDEBUG = $(TOOLS)/mspdebug
+MSP430FLASHER = $(TOOLS)/MSP430Flasher
 COPTS = -std=gnu99 -O2 -w -fpack-struct=1 -fno-strict-aliasing -fomit-frame-pointer -c -g -mmcu=$(MCU)
 CFLAGS = -I$(HAL) -I$(EM) $(COPTS)
 LDOPTS = -mmcu=$(MCU) -Wl,-Map=$(OUTDIR)/$(MAIN).map
