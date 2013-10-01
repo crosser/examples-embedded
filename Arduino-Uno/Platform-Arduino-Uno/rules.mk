@@ -1,6 +1,7 @@
 OUTDIR = Output
 EMBUILDER ?=
-SCHEMAFILE = $(SCHEMA-PROJ)/$(APPNAME).ems
+SCHEMAFILE = $(APPNAME).ems
+MAIN = $(APPNAME)-Prog
 OUTFILE = $(OUTDIR)/$(MAIN).out
 HEXFILE = $(OUTDIR)/$(MAIN).hex
 OBJECTS = $(OUTDIR)/$(MAIN).obj $(OUTDIR)/$(APPNAME).obj $(OUTDIR)/Hal.obj 
@@ -12,7 +13,7 @@ OBJCOPY = $(TOOLS)/bin/avr-objcopy
 SIZE = $(TOOLS)/bin/avr-size
 LOAD = c:/emmoco/workspace/Platform-Arduino-Uno/Avr/avrdude -C $(PLATFORM)/Avr/avrdude.conf -c stk500v1 -p $(MCU) -P COM7
 COPTS = -std=gnu99 -w -g -O3 -fpack-struct=1 -ffunction-sections -fdata-sections -c -mmcu=$(MCU)
-CFLAGS = -I$(HAL) -I$(EM) -I$(TOOLS)/avr/include -I($(COPTS)
+CFLAGS = -I$(PLATFORM)/Hal -IEm -I$(TOOLS)/avr/include $(COPTS)
 LFLAGS = -mmcu=$(MCU) --entry __init -u __init -nostdlib -Wl,-Map=$(OUTDIR)/$(MAIN).map,--gc-sections
 RMFILES = *.out *.map *.bin *.obj
 

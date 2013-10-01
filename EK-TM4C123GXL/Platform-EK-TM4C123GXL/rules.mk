@@ -1,6 +1,6 @@
 OUTDIR = Output
 EMBUILDER ?=
-SCHEMAFILE = $(SCHEMA-PROJ)/$(APPNAME).ems
+SCHEMAFILE = $(APPNAME).ems
 MAIN = $(APPNAME)-Prog
 OUTFILE = $(OUTDIR)/$(MAIN).out
 BINFILE = $(OUTDIR)/$(MAIN).bin
@@ -12,7 +12,7 @@ SIZE = c:/progs/sourcery/bin/arm-stellaris-eabi-size
 LMFLASH = c:/progs/lmflash/lmflash
 COPTS = -std=gnu99 -O2 -w -ffunction-sections -fdata-sections -fpack-struct=1 -fno-strict-aliasing -fomit-frame-pointer -c -g
 CFLAGS = -Dsourcerygxx -DTARGET_IS_BLIZZARD_RA1 -DPART_LM4F120H5QR -I$(PLATFORM)/Hal -I$(PLATFORM)/StellarisWare -IEm $(COPTS)
-LDOPTS = -Xlinker -Map=$(OUTDIR)/$(MAIN).map --gc-sections -L$(PLATFORM)/StellarisWare/driverlib/gcc-cm4f -ldriver-cm4f -lm -T ekc-lm4f232-rom.ld -T $(PLATFORM)/Hal/Hal.ld
+LDOPTS = -Xlinker -Map=$(OUTDIR)/$(MAIN).map -L$(PLATFORM)/StellarisWare/driverlib/gcc-cm4f -ldriver-cm4f -lm -T ekc-lm4f232-rom.ld -T $(PLATFORM)/Hal/Hal.ld
 RMFILES = *.out *.map *.bin *.obj
 
 load: $(OUTFILE)
