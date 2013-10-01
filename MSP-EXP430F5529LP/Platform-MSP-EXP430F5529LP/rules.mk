@@ -41,21 +41,21 @@ else
 	cmd /c mkdir $(OUTDIR)
 endif
 
-$(OUTDIR)/$(MAIN).obj: $(MAIN).c $(EM)/$(APPNAME).c
+$(OUTDIR)/$(MAIN).obj: $(MAIN).c Em/$(APPNAME).c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/$(APPNAME).obj: $(EM)/$(APPNAME).c
+$(OUTDIR)/$(APPNAME).obj: Em/$(APPNAME).c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(EM)/$(APPNAME).c: $(SCHEMAFILE)
+Em/$(APPNAME).c: $(SCHEMAFILE)
 ifneq (,$(EMBUILDER))
-	$(EMBUILDER) -v --root=$(<D) --outdir=$(EM) --jsondir=$(EM) $<
+	$(EMBUILDER) -v --root=$(<D) --outdir=Em --jsondir=Em $<
 else
 	@echo terminating because of prior schema errors 1>&2
 	@exit 1
 endif
 
-$(OUTDIR)/Hal.obj: $(HAL)/Hal.c
+$(OUTDIR)/Hal.obj: $(PLATFORM)/Hal/Hal.c
 	$(CC) $< -o $@ $(CFLAGS) 
 
 local-clean:

@@ -1,40 +1,23 @@
-ifeq (,$(findstring Windows,$(OS)))
-    SEP = :
-else
-    SEP = ;
-endif
-
-MCU = msp430fr5739
-
 OUTDIR = Output
-
-include $(PLATFORM)/init.mk
-
-PROGRAM-PROJ ?= ../$(APPNAME)-Program
-SCHEMA-PROJ ?= ../$(APPNAME)-Schema
 EMBUILDER ?=
-
-SCHEMAFILE = $(SCHEMA-PROJ)/$(APPNAME).ems
-EM = $(SCHEMA-PROJ)/Em
-HAL = $(PLATFORM)/Hal
+SCHEMAFILE = ./$(APPNAME).ems
 MAIN = $(APPNAME)-Prog
 OUTFILE = $(OUTDIR)/$(MAIN).out
 HEXFILE = $(OUTDIR)/$(MAIN).hex
 OBJECTS = $(OUTDIR)/$(MAIN).obj $(OUTDIR)/$(APPNAME).obj $(OUTDIR)/Hal.obj 
 
-CC = msp430-gcc
-LD = msp430-ld
-OBJCOPY = msp430-objcopy
-SIZE = msp430-size
-MSPDEBUG = mspdebug
-MSP430FLASHER = MSP430Flasher
-COPTS = -std=gnu99 -O2 -w -fpack-struct=1 -fno-strict-aliasing -fomit-frame-pointer -c -g -mmcu=$(MCU)
-CFLAGS = -I$(HAL) -I$(EM) $(COPTS)
-LDOPTS = -mmcu=$(MCU) -Wl,-Map=$(OUTDIR)/$(MAIN).map
+TOOLS ?= $(EMMOCO-ROOT)/msptools/bin
+MCU = msp430fr5739
+CC = $(TOOLS)/msp430-gcc
+LD = $(TOOLS)/msp430-ld
+OBJCOPY = $(TOOLS)/msp430-objcopy
+SIZE = $(TOOLS)/msp430-size
+MSPDEBUG = $(TOOLS)/mspdebug
+MSP430FLASHER = $(TOOLS)/MSP430Flasher
+COPTS = -std=gnu99 -O2 -w -ffunction-sections -fdata-sections -fpack-struct=1 -fno-strict-aliasing -fomit-frame-pointer -c -g -mmcu=$(MCU)
+CFLAGS = -I$(PLATFORM)/Hal -IEm $(COPTS)
+LDOPTS = -mmcu=$(MCU) -Wl,-Map=$(OUTDIR)/$(MAIN).map,--gc-sections
 RMFILES = *.out *.map *.hex *.obj
-VPATH = $(PROGRAM-PROJ)$(SEP)$(EM)$(SEP)$(HAL)
-
-build: $(OUTDIR) $(OUTFILE)
 
 ifeq (,$(findstring Windows,$(OS)))
 load: out-check
@@ -42,8 +25,10 @@ load: out-check
 else
 load: $(OUTFILE)
 	$(OBJCOPY) -O ihex $(OUTFILE) $(HEXFILE)
-	$(MSP430FLASHER) -i USB -m AUTO -e ERASE_MAIN -n $(MCU) -w $(HEXFILE) -v -z [VCC] -g -q
+	$(MSP430FLASHER) -i USB -m AUTO -e ERASE_MAIN -n $(MCU) -w $(HEXFILE) -v -z [VCC] -g -s -q
 endif
+
+build: $(OUTDIR) $(OUTFILE)
 
 $(OUTFILE): $(OBJECTS)
 	$(CC) -o $@ $^ $(LDOPTS)
@@ -56,21 +41,21 @@ else
 	cmd /c mkdir $(OUTDIR)
 endif
 
-$(OUTDIR)/$(MAIN).obj: $(MAIN).c $(EM)/$(APPNAME).c
+$(OUTDIR)/$(MAIN).obj: $(MAIN).c Em/$(APPNAME).c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/$(APPNAME).obj: $(EM)/$(APPNAME).c
+$(OUTDIR)/$(APPNAME).obj: Em/$(APPNAME).c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(EM)/$(APPNAME).c: $(SCHEMAFILE)
+Em/$(APPNAME).c: $(SCHEMAFILE)
 ifneq (,$(EMBUILDER))
-	$(EMBUILDER) -v --root=$(<D) --outdir=$(EM) --jsondir=$(EM) $<
+	$(EMBUILDER) -v --root=$(<D) --outdir=Em --jsondir=Em $<
 else
 	@echo terminating because of prior schema errors 1>&2
 	@exit 1
 endif
 
-$(OUTDIR)/Hal.obj: $(HAL)/Hal.c
+$(OUTDIR)/Hal.obj: $(PLATFORM)/Hal/Hal.c
 	$(CC) $< -o $@ $(CFLAGS) 
 
 local-clean:

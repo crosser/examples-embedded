@@ -1,5 +1,12 @@
+#ifndef Hal__H
+#define Hal__H
+
 #include <stdint.h>
 #include <stdbool.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /**
  * Hal.h -- HAL Interface Definitions
@@ -287,3 +294,9 @@ extern void Hal_ledToggle(void);
  *
  **/
 extern void Hal_tickStart(uint16_t msecs, Hal_Handler Handler);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* Hal__H */
