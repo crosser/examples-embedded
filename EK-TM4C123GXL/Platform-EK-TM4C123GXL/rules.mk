@@ -6,13 +6,15 @@ OUTFILE = $(OUTDIR)/$(MAIN).out
 BINFILE = $(OUTDIR)/$(MAIN).bin
 OBJECTS = $(OUTDIR)/$(MAIN).obj $(OUTDIR)/$(APPNAME).obj $(OUTDIR)/Hal.obj 
 
-CC = c:/progs/sourcery/bin/arm-stellaris-eabi-gcc
-OBJCOPY = c:/progs/sourcery/bin/arm-stellaris-eabi-objcopy
-SIZE = c:/progs/sourcery/bin/arm-stellaris-eabi-size
+TOOLS ?= c:/progs/gcc-arm-none-eabi/bin/arm-none-eabi
+CC = $(TOOLS)-gcc
+LD = $(TOOLS)-ld
+OBJCOPY = $(TOOLS)-objcopy
+SIZE = $(TOOLS)-size
 LMFLASH = c:/progs/lmflash/lmflash
-COPTS = -std=gnu99 -O2 -w -ffunction-sections -fdata-sections -fpack-struct=1 -fno-strict-aliasing -fomit-frame-pointer -c -g
+COPTS = -mthumb -mcpu=cortex-m4 -std=gnu99 -O2 -w -ffunction-sections -fdata-sections -fpack-struct=1 -fno-strict-aliasing -fomit-frame-pointer -c -g
 CFLAGS = -Dsourcerygxx -DTARGET_IS_BLIZZARD_RA1 -DPART_LM4F120H5QR -I$(PLATFORM)/Hal -I$(PLATFORM)/StellarisWare -IEm $(COPTS)
-LDOPTS = -Xlinker -Map=$(OUTDIR)/$(MAIN).map -L$(PLATFORM)/StellarisWare/driverlib/gcc-cm4f -ldriver-cm4f -lm -T ekc-lm4f232-rom.ld -T $(PLATFORM)/Hal/Hal.ld
+LDOPTS = -Map=$(OUTDIR)/$(MAIN).map -L$(PLATFORM)/StellarisWare/driverlib/gcc-cm4f -ldriver-cm4f -T $(PLATFORM)/ek-lm4f232.ld --entry ResetISR --gc-sections
 RMFILES = *.out *.map *.bin *.obj
 
 load: $(OUTFILE)
@@ -22,7 +24,8 @@ load: $(OUTFILE)
 build: $(OUTDIR) $(OUTFILE)
 
 $(OUTFILE): $(OBJECTS)
-	$(CC) -o $@ $^ $(LDOPTS)
+	$(CC) $(PLATFORM)/startup_gcc.c -o $(OUTDIR)/startup_gcc.obj $(CFLAGS) 
+	$(LD) -o $@ $^ $(OUTDIR)/startup_gcc.obj $(LDOPTS)
 	$(SIZE) $@
 
 $(OUTDIR):
