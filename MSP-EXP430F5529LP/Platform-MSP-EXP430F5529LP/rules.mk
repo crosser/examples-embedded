@@ -18,17 +18,16 @@ COPTS = -std=gnu99 -O2 -w -ffunction-sections -fdata-sections -fpack-struct=1 -f
 CFLAGS = -I$(PLATFORM)/Hal -IEm $(COPTS)
 LDOPTS = -mmcu=$(MCU) -Wl,-Map=$(OUTDIR)/$(MAIN).map,--gc-sections
 
-ifeq (,$(findstring Windows,$(OS)))
 load: out-check
+ifeq (,$(findstring Windows,$(OS)))
 	$(MSPDEBUG) rf2500 "prog $(OUTFILE)" 2>&1
 else
-load: $(HWXFILE)
 	$(MSP430FLASHER) -i USB -m AUTO -e ERASE_MAIN -n $(MCU) -w $(HEXFILE) -v -z [VCC] -g -s -q
 endif
 
-build: $(OUTDIR) $(HEXFILE)
+build: $(OUTDIR) out-remove $(OUTFILE)
 
-$(HEXFILE): $(OBJECTS)
+$(OUTFILE): $(OBJECTS)
 	$(CC) -o $(OUTFILE) $^ $(LDOPTS)
 	$(OBJCOPY) -O ihex $(OUTFILE) $(HEXFILE)
 	$(SIZE) $(OUTFILE)
@@ -79,6 +78,15 @@ out-check:
 ifeq (,$(wildcard $(OUTFILE)))
 	@echo error: $(OUTFILE): No such file or directory 1>&2
 	@exit 1
+endif
+
+out-remove:
+ifeq (,$(findstring Windows,$(OS)))
+	rm -f $(OUTFILE)
+else
+ifneq (,$(wildcard $(OUTFILE)))
+	cmd /c del /q $(subst /,\,$(OUTFILE))
+endif
 endif
 
 .PHONY: all load clean local-clean out-check

@@ -16,12 +16,12 @@ COPTS = -mthumb -mcpu=cortex-m4 -std=gnu99 -O2 -w -ffunction-sections -fdata-sec
 CFLAGS = -Dsourcerygxx -DTARGET_IS_BLIZZARD_RA1 -DPART_LM4F120H5QR -I$(PLATFORM)/Hal -I$(PLATFORM)/StellarisWare -IEm $(COPTS)
 LDOPTS = -Map=$(OUTDIR)/$(MAIN).map -L$(PLATFORM)/StellarisWare/driverlib/gcc-cm4f -ldriver-cm4f -T $(PLATFORM)/ek-lm4f232.ld --entry ResetISR --gc-sections
 
-load: $(BINFILE)
+load: out-check
 	$(LMFLASH) -v -r $(BINFILE) >nul
 
-build: $(OUTDIR) $(BINFILE)
+build: $(OUTDIR) out-remove $(OUTFILE)
 
-$(BINFILE): $(OBJECTS)
+$(OUTFILE): $(OBJECTS)
 	$(CC) $(PLATFORM)/startup_gcc.c -o $(OUTDIR)/startup_gcc.obj $(CFLAGS) 
 	$(LD) -o $(OUTFILE) $^ $(OUTDIR)/startup_gcc.obj $(LDOPTS)
 	$(OBJCOPY) -O binary $(OUTFILE) $(BINFILE)
@@ -73,6 +73,15 @@ out-check:
 ifeq (,$(wildcard $(OUTFILE)))
 	@echo error: $(OUTFILE): No such file or directory 1>&2
 	@exit 1
+endif
+
+out-remove:
+ifeq (,$(findstring Windows,$(OS)))
+	rm -f $(OUTFILE)
+else
+ifneq (,$(wildcard $(OUTFILE)))
+	cmd /c del /q $(subst /,\,$(OUTFILE))
+endif
 endif
 
 .PHONY: all load clean local-clean out-check
