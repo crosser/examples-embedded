@@ -17,22 +17,21 @@ MSP430FLASHER = $(TOOLS)/MSP430Flasher
 COPTS = -std=gnu99 -O2 -w -ffunction-sections -fdata-sections -fpack-struct=1 -fno-strict-aliasing -fomit-frame-pointer -c -g -mmcu=$(MCU)
 CFLAGS = -I$(PLATFORM)/Hal -IEm $(COPTS)
 LDOPTS = -mmcu=$(MCU) -Wl,-Map=$(OUTDIR)/$(MAIN).map,--gc-sections
-RMFILES = *.out *.map *.hex *.obj
 
 ifeq (,$(findstring Windows,$(OS)))
 load: out-check
 	$(MSPDEBUG) rf2500 "prog $(OUTFILE)" 2>&1
 else
-load: $(OUTFILE)
-	$(OBJCOPY) -O ihex $(OUTFILE) $(HEXFILE)
+load: $(HWXFILE)
 	$(MSP430FLASHER) -i USB -m AUTO -e ERASE_MAIN -n $(MCU) -w $(HEXFILE) -v -z [VCC] -g -s -q
 endif
 
-build: $(OUTDIR) $(OUTFILE)
+build: $(OUTDIR) $(HEXFILE)
 
-$(OUTFILE): $(OBJECTS)
-	$(CC) -o $@ $^ $(LDOPTS)
-	$(SIZE) $@
+$(HEXFILE): $(OBJECTS)
+	$(CC) -o $(OUTFILE) $^ $(LDOPTS)
+	$(OBJCOPY) -O ihex $(OUTFILE) $(HEXFILE)
+	$(SIZE) $(OUTFILE)
 
 $(OUTDIR):
 ifeq (,$(findstring Windows,$(OS)))

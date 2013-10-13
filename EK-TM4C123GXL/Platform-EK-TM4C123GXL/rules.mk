@@ -15,18 +15,17 @@ LMFLASH = $(EMMOCO-ROOT)/armtools/LMFlash/LMFlash
 COPTS = -mthumb -mcpu=cortex-m4 -std=gnu99 -O2 -w -ffunction-sections -fdata-sections -fpack-struct=1 -fno-strict-aliasing -fomit-frame-pointer -c -g
 CFLAGS = -Dsourcerygxx -DTARGET_IS_BLIZZARD_RA1 -DPART_LM4F120H5QR -I$(PLATFORM)/Hal -I$(PLATFORM)/StellarisWare -IEm $(COPTS)
 LDOPTS = -Map=$(OUTDIR)/$(MAIN).map -L$(PLATFORM)/StellarisWare/driverlib/gcc-cm4f -ldriver-cm4f -T $(PLATFORM)/ek-lm4f232.ld --entry ResetISR --gc-sections
-RMFILES = *.out *.map *.bin *.obj
 
-load: $(OUTFILE)
-	$(OBJCOPY) -O binary $(OUTFILE) $(BINFILE)
+load: $(BINFILE)
 	$(LMFLASH) -v -r $(BINFILE) >nul
 
-build: $(OUTDIR) $(OUTFILE)
+build: $(OUTDIR) $(BINFILE)
 
-$(OUTFILE): $(OBJECTS)
+$(BINFILE): $(OBJECTS)
 	$(CC) $(PLATFORM)/startup_gcc.c -o $(OUTDIR)/startup_gcc.obj $(CFLAGS) 
-	$(LD) -o $@ $^ $(OUTDIR)/startup_gcc.obj $(LDOPTS)
-	$(SIZE) $@
+	$(LD) -o $(OUTFILE) $^ $(OUTDIR)/startup_gcc.obj $(LDOPTS)
+	$(OBJCOPY) -O binary $(OUTFILE) $(BINFILE)
+	$(SIZE) $(OUTFILE)
 
 $(OUTDIR):
 ifeq (,$(findstring Windows,$(OS)))
