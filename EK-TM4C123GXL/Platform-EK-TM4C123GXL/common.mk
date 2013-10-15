@@ -7,7 +7,12 @@ HEXFILE = $(OUTDIR)/$(MAIN).hex
 OUTFILE = $(OUTDIR)/$(MAIN).out
 OBJECTS = $(OUTDIR)/$(MAIN).obj $(OUTDIR)/$(APPNAME).obj $(OUTDIR)/Hal.obj 
 
-CFLAGS = -I$(PLATFORM)/Hal -IEm $(COPTS)
+CC = $(TOOLS)-gcc
+LD = $(TOOLS)-ld
+OBJCOPY = $(TOOLS)-objcopy
+SIZE = $(TOOLS)-size
+
+CFLAGS = -std=gnu99 -O2 -w -ffunction-sections -fdata-sections -fpack-struct=1 -fno-strict-aliasing -fomit-frame-pointer -c -g -I$(PLATFORM)/Hal -IEm $(COPTS)
 
 load: out-check
 	$(EXEC)
