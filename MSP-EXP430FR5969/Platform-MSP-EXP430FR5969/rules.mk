@@ -1,6 +1,7 @@
 include $(PLATFORM)/common.mk
 
 TOOLS ?= $(EMMOCO-ROOT)/msptools/bin/msp430
+GCCARCH = msp430
 MCU = msp430fr5969
 
 COPTS = -mmcu=$(MCU)

@@ -7,10 +7,10 @@ HEXFILE = $(OUTDIR)/$(MAIN).hex
 OUTFILE = $(OUTDIR)/$(MAIN).out
 OBJECTS = $(OUTDIR)/$(MAIN).obj $(OUTDIR)/$(APPNAME).obj $(OUTDIR)/Hal.obj 
 
-CC = $(TOOLS)-gcc
-LD = $(TOOLS)-ld
-OBJCOPY = $(TOOLS)-objcopy
-SIZE = $(TOOLS)-size
+CC = $(TOOLS)/$(GCCARCH)-gcc
+LD = $(TOOLS)/$(GCCARCH)-ld
+OBJCOPY = $(TOOLS)/$(GCCARCH)-objcopy
+SIZE = $(TOOLS)/$(GCCARCH)-size
 
 CFLAGS = -std=gnu99 -O2 -w -ffunction-sections -fdata-sections -fpack-struct=1 -fno-strict-aliasing -fomit-frame-pointer -c -g -I$(PLATFORM)/Hal -IEm $(COPTS)
 

@@ -1,7 +1,8 @@
 include $(PLATFORM)/common.mk
 
 WINAVR = c:/progs/WinAVR-20100110
-TOOLS ?= $(WINAVR)/bin/avr
+TOOLS ?= $(WINAVR)/bin
+GCCARCH = avr
 MCU = atmega328p
 
 COPTS = -mmcu=$(MCU) -I$(WINAVR)/avr/include
