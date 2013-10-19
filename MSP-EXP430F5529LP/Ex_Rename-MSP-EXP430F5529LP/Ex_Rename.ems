@@ -1,0 +1,10 @@
+version = "1.0.0"
+description = "Device rename example"
+
+schema Ex_Rename {
+
+	string<9> newName {
+	    writeonly
+	};
+
+};
