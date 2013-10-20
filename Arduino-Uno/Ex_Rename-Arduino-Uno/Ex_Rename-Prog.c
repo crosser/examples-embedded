@@ -6,6 +6,8 @@ static bool renameFlag = false;
 
 void main() {
 	Hal_init();
+    // most apps will bind a "known" name here 
+    // Ex_Rename_setDeviceName(...);
 	Ex_Rename_start();    
 	Hal_idleLoop();
 }
