@@ -1,3 +1,7 @@
+/*
+ * ============ Hardware Abstraction Layer for Arduino Uno ============
+ */
+
 #include "Hal.h"
 #include "Em_Message.h"
 

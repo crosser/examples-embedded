@@ -1,13 +1,3 @@
-#ifndef Hal__H
-#define Hal__H
-
-#include <stdint.h>
-#include <stdbool.h>
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 /**
  * Hal.h -- HAL Interface Definitions
  *
@@ -22,7 +12,20 @@ extern "C" {
  * TICK -- a timer that can be set to interrupt every n milliseconds
  * IDLE LOOP -- an event driven idle loop for controlling the EAP
  *
+ * For information on Hal implementations for specific target hardware platforms,
+ * visit the http://emmoco.wiki.com.
+ *
  **/
+
+#ifndef Hal__H
+#define Hal__H
+
+#include <stdint.h>
+#include <stdbool.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef void (*Hal_Handler)(void);
 

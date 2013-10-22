@@ -1,73 +1,7 @@
 /*
- * ============ Platform Configuration for MSP-EXP430FR5969 LaunchPad ============
- *
- * The Hal manages the hardware connections between the TI MSP430 (known in the comments below as the EAP)
- * and the Anaren A2541R24x10Gx BLE module (known in the comments below as the MCM).  In addition it manages
- * connections to other devices used in the application (e.g. LEDs, buttons, timers, etc).
- *
- * Note that for clarity's sake, we will denote ports on the EAP as PX.X (with a decimal point) and ports on the
- * MCM as PX_X with an underscore.
- *
- * There are four mandatory connections between the EAP microcontroller and the MCM BLE module.
- *
- *   - EAP_RX             -- Connection between the EAP UART's RXD and the MCM UART's P0_3/TXD signals
- *   - EAP_TX             -- Connection between the EAP UART's TXD and the MCM UART's P0_2/RXD signals
- *   - EAP_RX_ACK         -- Connection between an EAP output GPIO to the MCM's P0_4/CTS input signal
- *   - EAP_TX_ACK         -- Connection between an EAP input GPIO to the MCM's P0_5/RTS output signal
- *
- * In addition there are several optional (but recommended) signals that are present on the Anaren A2541R24A-ADB1 BoosterPack
- * board that can be implemented on custom hardware.  These do not require any port connection on the EAP.  They are
- * directly connected to the MCM:
- *
- *   - MCM RESET          -- The MCM Reset signal (see A2541 datasheet for important requirements)
- *   - MCM P0_0/S1        -- The MCM User Input Switch (normally pulled high, GND on closure)
- *   - MCM P1_7/RXD       -- The MCM Admin UART's RXD line -- used for updating firmware and programming the MCM's parameters
- *   - MCM P1_6/TXD       -- The MCM Admin UART's TXD line -- used for updating firmware and programming the MCM's parameters
- *   - MCM P1_5/RTS       -- The MCM Admin UART's RTS line -- used for updating firmware and programming the MCM's parameters
- *   - MCM P1_4/CTS       -- The MCM Admin UART's CTS line -- used for updating firmware and programming the MCM's parameters
- *   - MCM P0_6/LED1      -- The MCM Red Status LED
- *   - MCM P1_0/LED2      -- The MCM Yellow Status LED
- *   - MCM P2_0/LED3      -- The MCM Blue Status LED
- *
- * And further, there are several optional ports used on the EAP microcontroller in this HAL and with these examples.
- *
- *   - EAP CONNECTED_LED  -- An LED connected to the EAP used to signal connection to a BLE central
- *   - EAP LED            -- An LED connected to the EAP used by the user application.
- *   - EAP DEBUG1         -- An EAP port used by the user application for debug
- *   - EAP DEBUG2         -- An EAP port used by the user application for debug
- *   - EAP BUTTON         -- An EAP input port connected to a switch (normally pulled high, GND on closure)
- *
- * To get a full understanding the following documents prove highly useful:
- *
- *   - MSP430FR5969 Datasheet:           TI document SLAS704 (rev - at this time)
- *   - MSP430FR59xx Family Users Guide:  TI document SLAU367 (rev A at this time)
- *   - MSP-EXP430FR5969 Users Guide:     TI document SLAUXXX (rev - at this time)
- *   - A2541x24x Booster Pack Users Manual:
- *   - A2541x24x Module Users Manual:
- *
- * Ports specifically used in this HAL:
- *
- *   - MSP430 P1.0 -- output -- LED connected to LaunchPad green LED2
- *   - MSP430 P1.1 -- input  -- BUTTON connected to LaunchPad switch S3
- *   - MSP430 P1.3 -- output -- DEBUG1  used optionally for debugging connected to LaunchPad J5-11
- *   - MSP430 P1.4 -- output -- DEBUG2  used optionally for debugging connected to LaunchPad J5-12
- *   - MSP430 P2.5 -- output -- EAP TX UCA1TXD UART connected to A2541 module P0_2/RXD (115200,8N1N) through LaunchPad J4-4
- *   - MSP430 P2.6 -- input  -- EAP RX UCA1RXD UART connected to A2541 module P0_3/TXD (115200,8N1N) through LaunchPad J4-3
- *   - MSP430 P3.4 -- output -- EAP_RX_ACK   connected to A2541 P0_4/CTS# through LaunchPad J4-8 and BoosterPack jumper JP3-1/JP3-2
- *   - MSP430 P3.5 -- input  -- EAP_TX_ACK   connected to A2541 P0_5/RTS# through LaunchPad J4-9 and BoosterPack jumper JP4-1/JP4-2
- *   - MSP430 P4.6 -- output -- CONNECTED_LED connected to LaunchPad red LED1 (through LaunchPad jumper J6)
- *
- * In addition to the above, the MSP430's TimerA1 is used in this HAL.
- *   - TimerA1 is configured in Continuous mode, based on the ACLK -- which is based on the MSP430 VLO running at approximately 12 KHz.
- *   - TA1CCR0 is used to generate a "tick" interrupt (see Hal_tickStart() below).
- *   - TA1CCR1 is used as a watchdog timer on the UART connection between the EAP and the MCM.
- *
- * And finally, in this HAL, the MSP430 clocks are set up as:
- *   - MCLK = SMCLK = 1MHz DCO
- *   - ACLK = XT1 = 32768 Hz
- *
+ * ============ Hardware Abstraction Layer for MSP-EXP430FR5969 LaunchPad ============
  */
-
+ 
 #include "Hal.h"
 #include "Em_Message.h"
 

@@ -1,3 +1,7 @@
+/*
+ * ============ Hardware Abstraction Layer for EK-TM4C123GXL LaunchPad ============
+ */
+
 #include "Hal.h"
 #include "Em_Message.h"
 
