@@ -13,7 +13,7 @@
  * IDLE LOOP -- an event driven idle loop for controlling the EAP
  *
  * For information on Hal implementations for specific target hardware platforms,
- * visit the http://emmoco.wiki.com.
+ * visit the http://wiki.em-hub.com/display/ED.
  *
  **/
 
