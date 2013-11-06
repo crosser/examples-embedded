@@ -22,10 +22,10 @@
 #define CONNECTED_ON()              (PORTB |= CONNECTED_BIT)
 #define CONNECTED_OFF()             (PORTB &= ~CONNECTED_BIT)
 
-#define EAP_RX_ACK_BIT              (1 << 4)
-#define EAP_RX_ACK_CONFIG()         (DDRD |= EAP_RX_ACK_BIT)
-#define EAP_RX_ACK_SET()            (PORTD |= EAP_RX_ACK_BIT)
-#define EAP_RX_ACK_CLR()            (PORTD &= ~EAP_RX_ACK_BIT)
+#define EAP_RX_ACK_BIT              (1 << 3)
+#define EAP_RX_ACK_CONFIG()         (DDRC |= EAP_RX_ACK_BIT)
+#define EAP_RX_ACK_SET()            (PORTC |= EAP_RX_ACK_BIT)
+#define EAP_RX_ACK_CLR()            (PORTC &= ~EAP_RX_ACK_BIT)
 
 #define EAP_TX_ACK_BIT              (1 << 2)
 #define EAP_TX_ACK_CONFIG()         (DDRD &= ~EAP_TX_ACK_BIT, PORTD |= EAP_TX_ACK_BIT, EICRA |= 0x3) 
