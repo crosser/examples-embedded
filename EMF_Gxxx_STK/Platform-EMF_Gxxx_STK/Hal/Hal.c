@@ -54,12 +54,8 @@
 #define EAP_TX_ACK_PORT         gpioPortC
 #define EAP_TX_ACK_PIN          5
 
-/*
-#define BUTTON_PORT             GPIO_PORTF_BASE
-#define BUTTON_PIN              GPIO_PIN_4
-#define BUTTON_ENABLE()         GPIOPinIntEnable(BUTTON_PORT, BUTTON_PIN)
-#define BUTTON_PRESSED()        GPIOPinRead(BUTTON_PORT, BUTTON_PIN) == BUTTON_PIN
-*/
+#define BUTTON_PORT             gpioPortB
+#define BUTTON_PIN              10
 
 #define NUM_HANDLERS 3
 
@@ -76,12 +72,16 @@ static Hal_Handler handlerTab[NUM_HANDLERS];
 
 /* -------- APP-HAL INTERFACE -------- */
 
-void Hal_buttonEnable(Hal_Handler handler) {/*
+void Hal_buttonEnable(Hal_Handler handler) {
     handlerTab[BUTTON_HANDLER_ID] = buttonHandler;
     appButtonHandler = handler;
+    GPIO_PinModeSet(BUTTON_PORT, BUTTON_PIN, gpioModeInput, 1);
+    GPIO_IntConfig(BUTTON_PORT, BUTTON_PIN, false, true, false);  // falling edge
+    GPIO_IntClear(1 << BUTTON_PIN);
+    GPIO_IntEnable(1 << BUTTON_PIN);
     Hal_delay(100);
-    BUTTON_ENABLE();
-*/}
+    NVIC_EnableIRQ(GPIO_EVEN_IRQn);  // for BUTTON_PIN
+}
 
 void Hal_connected(void) {
 	CONNECTED_LED_ON();
@@ -294,10 +294,11 @@ static void postEvent(uint8_t handlerId) {
 
 /* -------- INTERRUPT SERVICE ROUTINES -------- */
 
-void Hal_buttonIsr(void) {/*
-    GPIOPinIntClear(BUTTON_PORT, BUTTON_PIN);
+// Hal_buttonIsr
+void GPIO_EVEN_IRQHandler(void) {
+    GPIO_IntClear(1 << BUTTON_PIN);
     postEvent(BUTTON_HANDLER_ID);
-*/}
+}
 
 // Hal_rxIsr
 void USART1_RX_IRQHandler(void) {
