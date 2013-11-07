@@ -13,5 +13,6 @@ echo g>> %CMDS%
 echo q>> %CMDS%
 
 "%JLINK%" %CMDS% 1> NUL
+del %CMDS%
 
 endlocal

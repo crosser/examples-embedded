@@ -1,12 +1,11 @@
 include $(PLATFORM)/common.mk
 include $(PLATFORM)/local.mk
 
-#TOOLS ?= $(SOURCERY-PATH)/bin/arm-none-eabi
-TOOLS ?= $(SOURCERY-PATH)/bin
+TOOLS ?= $(EMMOCO-ROOT)/armtools/bin
 GCCARCH = arm-none-eabi
 
 COPTS = -mthumb -mcpu=cortex-m3 -mfix-cortex-m3-ldrd -DEFM32G890F128 $(CINCS) 
-LDOPTS = -mthumb -mcpu=cortex-m3 -Wl,-Map=$(OUTDIR)/$(MAIN).map,--gc-sections -T $(EFM-PATH)/Device/EnergyMicro/EFM32G/Source/G++/efm32g.ld -Wl,--start-group -lgcc -lc -lcs3 -lcs3unhosted -Wl,--end-group
+LDOPTS = -Map=$(OUTDIR)/$(MAIN).map -T $(PLATFORM)/efm32g.ld --entry Reset_Handler --gc-sections
 
 CINCS = \
     -I$(EFM-PATH)/emlib/src \
@@ -18,9 +17,7 @@ CINCS = \
 EXEC = cmd /c $(PLATFORM-PATH)/load.bat $(BINFILE)
 
 $(OUTFILE): $(OBJECTS)
-	$(CC) $(EFM-PATH)/Device/EnergyMicro/EFM32G/Source/G++/startup_efm32g.S -o $(OUTDIR)/startup_efm32g.obj $(CFLAGS) 
-	$(CC) -o $(OUTFILE) $^ $(OUTDIR)/startup_efm32g.obj $(LDOPTS)
+	$(CC) $(PLATFORM)/startup_efm32g.S -o $(OUTDIR)/startup_efm32g.obj $(CFLAGS) 
+	$(LD) -o $(OUTFILE) $^ $(OUTDIR)/startup_efm32g.obj $(LDOPTS)
 	$(OBJCOPY) -O binary $(OUTFILE) $(BINFILE)
 	$(SIZE) $(OUTFILE)
-
-	
