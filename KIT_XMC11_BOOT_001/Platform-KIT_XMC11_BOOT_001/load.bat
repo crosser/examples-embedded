@@ -3,7 +3,7 @@ setlocal
 
 set BIN=%1
 set CMDS=jlink.cmds
-set JLINK=C:\Program Files (x86)\SEGGER\JLinkARM_V474\JLink.exe
+set JLINK=%~dp0/Jlink/JLink.exe
 
 echo device XMC1100-T038F0064> %CMDS%
 echo h>> %CMDS%
