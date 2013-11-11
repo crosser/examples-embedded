@@ -1,0 +1,14 @@
+version = "1.0.0";
+description = "File example";
+
+schema Ex_File {
+
+    file fileData {
+        readwrite
+    };
+
+    uint32 fileSize {
+        readwrite
+    };
+
+};
