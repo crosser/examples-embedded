@@ -1,8 +1,0 @@
-version = "1.0.0";
-description = "Parameter group example";
-
-schema Ex_Config {
-
-    /* no resources */
-
-};
