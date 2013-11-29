@@ -159,6 +159,16 @@ Reset_Handler:
     bgt    .flash_to_ram_loop
 .flash_to_ram_loop_end:
 
+	movs  r0, #0
+    ldr    r2, =__bss_start__
+    ldr    r3, =__bss_end__
+	b     .clear_bss_loop_test
+.clear_bss_loop:
+	str   r0, [r2], #4
+.clear_bss_loop_test:
+	cmp   r2, r3
+  	blt   .clear_bss_loop
+
     ldr    r0, =main
     bx     r0
     .pool
