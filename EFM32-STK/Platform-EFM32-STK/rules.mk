@@ -18,7 +18,7 @@ CINCS = \
     -I$(EFM-PATH)/emlib/inc \
     -I$(EFM-PATH)/Device/EnergyMicro/$(FAMILY)/Source \
     -I$(EFM-PATH)/Device/EnergyMicro/$(FAMILY)/Include \
-    -I$(EFM-PATH)/CMSIS-3/Include
+    -I$(EFM-PATH)/CMSIS/Include
 
 EXEC = cmd /c $(PLATFORM-PATH)/load.bat $(MCU) $(BINFILE)
 
