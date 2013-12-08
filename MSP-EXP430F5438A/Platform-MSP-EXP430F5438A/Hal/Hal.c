@@ -196,7 +196,7 @@ void Hal_init(void) {
 
     /* setup TimerA1 */
     TA1CTL = TASSEL_1 + MC_2;                 // ACLK, Continuous mode
-    UART_WATCH_ENABLE();
+    UART_WATCH_DISABLE();
 
     /* setup UART */
 

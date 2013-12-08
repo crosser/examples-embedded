@@ -28,7 +28,7 @@
     <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.10.0/port/p/0/pad_5/altin" isResolved="true"/>
     <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.10.0/port/p/0/pad_5/pad" isResolved="true"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.10.0/port/p/0/pad/5/pad" isVisible="true">
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="SWREG_OUT" URI="http://www.infineon.com/0.10.0/port/p/0/pad/5/swreg_out" signalType="SINGAL" direction="OUT" isVisible="true">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO004/1.0.18/io004_0.app#//@consumed.2"/>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC5_4" URI="http://www.infineon.com/0.10.0/port/p/0/pad/5/iocr_oe" maxValue="1" minValue="0" startPos="15" stopPos="15" accessPermission="rw">
@@ -59,7 +59,7 @@
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <toolTipHelpDescription>Port n Set Bit x</toolTipHelpDescription>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="SWREG_OUT" URI="http://www.infineon.com/0.10.0/port/p/0/pad/5/swreg_out" signalType="SINGAL" direction="OUT" isVisible="true">
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.10.0/port/p/0/pad/5/pad" isVisible="true">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO004/1.0.18/io004_0.app#//@consumed.8"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="P0.6 / #23" URI="http://www.infineon.com/0.10.0/port/p/0/pad/6">
@@ -90,7 +90,7 @@
     <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.10.0/port/p/0/pad_6/altin" isResolved="true"/>
     <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.10.0/port/p/0/pad_6/pad" isResolved="true"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.10.0/port/p/0/pad/6/pad" isVisible="true">
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="SWREG_OUT" URI="http://www.infineon.com/0.10.0/port/p/0/pad/6/swreg_out" signalType="SINGAL" direction="OUT" isVisible="true">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO004/1.0.18/io004_1.app#//@consumed.2"/>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC6_4" URI="http://www.infineon.com/0.10.0/port/p/0/pad/6/iocr_oe" maxValue="1" minValue="0" startPos="23" stopPos="23" accessPermission="rw">
@@ -121,7 +121,7 @@
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <toolTipHelpDescription>Port n Set Bit x</toolTipHelpDescription>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="SWREG_OUT" URI="http://www.infineon.com/0.10.0/port/p/0/pad/6/swreg_out" signalType="SINGAL" direction="OUT" isVisible="true">
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.10.0/port/p/0/pad/6/pad" isVisible="true">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO004/1.0.18/io004_1.app#//@consumed.8"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="P0.0 / #17" URI="http://www.infineon.com/0.10.0/port/p/0/pad/0">
@@ -152,7 +152,7 @@
     <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.10.0/port/p/0/pad_0/altin" isResolved="true"/>
     <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.10.0/port/p/0/pad_0/pad" isResolved="true"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.10.0/port/p/0/pad/0/pad" isVisible="true">
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="SWREG_OUT" URI="http://www.infineon.com/0.10.0/port/p/0/pad/0/swreg_out" signalType="SINGAL" direction="OUT" isVisible="true">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO004/1.0.18/io004_2.app#//@consumed.2"/>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC0_4" URI="http://www.infineon.com/0.10.0/port/p/0/pad/0/iocr_oe" maxValue="1" minValue="0" startPos="7" stopPos="7" accessPermission="rw">
@@ -183,7 +183,7 @@
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Port n Set Bit x</toolTipHelpDescription>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="SWREG_OUT" URI="http://www.infineon.com/0.10.0/port/p/0/pad/0/swreg_out" signalType="SINGAL" direction="OUT" isVisible="true">
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.10.0/port/p/0/pad/0/pad" isVisible="true">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO004/1.0.18/io004_2.app#//@consumed.8"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="P0.1 / #18" URI="http://www.infineon.com/0.10.0/port/p/0/pad/1">
@@ -214,7 +214,7 @@
     <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.10.0/port/p/0/pad_1/altin" isResolved="true"/>
     <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.10.0/port/p/0/pad_1/pad" isResolved="true"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.10.0/port/p/0/pad/1/pad" isVisible="true">
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="SWREG_OUT" URI="http://www.infineon.com/0.10.0/port/p/0/pad/1/swreg_out" signalType="SINGAL" direction="OUT" isVisible="true">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO004/1.0.18/io004_3.app#//@consumed.2"/>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC1_4" URI="http://www.infineon.com/0.10.0/port/p/0/pad/1/iocr_oe" maxValue="1" minValue="0" startPos="15" stopPos="15" accessPermission="rw">
@@ -245,7 +245,7 @@
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Port n Set Bit x</toolTipHelpDescription>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="SWREG_OUT" URI="http://www.infineon.com/0.10.0/port/p/0/pad/1/swreg_out" signalType="SINGAL" direction="OUT" isVisible="true">
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.10.0/port/p/0/pad/1/pad" isVisible="true">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO004/1.0.18/io004_3.app#//@consumed.8"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="P0.2 / #19" URI="http://www.infineon.com/0.10.0/port/p/0/pad/2">
@@ -276,7 +276,7 @@
     <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.10.0/port/p/0/pad_2/altin" isResolved="true"/>
     <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.10.0/port/p/0/pad_2/pad" isResolved="true"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.10.0/port/p/0/pad/2/pad" isVisible="true">
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="SWREG_OUT" URI="http://www.infineon.com/0.10.0/port/p/0/pad/2/swreg_out" signalType="SINGAL" direction="OUT" isVisible="true">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO004/1.0.18/io004_4.app#//@consumed.2"/>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC2_4" URI="http://www.infineon.com/0.10.0/port/p/0/pad/2/iocr_oe" maxValue="1" minValue="0" startPos="23" stopPos="23" accessPermission="rw">
@@ -307,7 +307,7 @@
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <toolTipHelpDescription>Port n Set Bit x</toolTipHelpDescription>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="SWREG_OUT" URI="http://www.infineon.com/0.10.0/port/p/0/pad/2/swreg_out" signalType="SINGAL" direction="OUT" isVisible="true">
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.10.0/port/p/0/pad/2/pad" isVisible="true">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO004/1.0.18/io004_4.app#//@consumed.8"/>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="HW6" URI="http://www.infineon.com/0.10.0/port/p/0/pad/6/hwsel_hw" maxValue="3" minValue="0" startPos="12" stopPos="13" accessPermission="rw">

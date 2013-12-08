@@ -12,10 +12,10 @@
     <resourcesList name="tr" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/eru/0/tr0" isResolved="true"/>
     <resourcesList name="fl" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/eru/0/fl0" isResolved="true"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="TR0" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ers_etl/0/tr" signalType="SINGAL" direction="IN" isVisible="true">
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="FL0" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ers_etl/0/fl" signalType="SINGAL" direction="IN" isVisible="true">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../ERU001/1.0.8/eru001_0.app#//@consumed.3"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="0A" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ers_etl/0/a" signalType="SINGAL" direction="IN" isVisible="true">
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="0B" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ers_etl/0/b" signalType="SINGAL" direction="IN" isVisible="true">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../ERU001/1.0.8/eru001_0.app#//@consumed.4"/>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="NA" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ers_etl/0/exicon/na" maxValue="1" minValue="0" startPos="10" stopPos="10" accessPermission="rw">
@@ -50,8 +50,8 @@
   <provided xsi:type="ResourceModel:BitField" name="FE" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ers_etl/0/exicon/fe" maxValue="1" minValue="0" startPos="3" stopPos="3" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../ERU001/1.0.8/eru001_0.app#//@consumed.8"/>
-    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Falling Edge Detection Enable ETLx</toolTipHelpDescription>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="A falling edge is not considered as edge event"/>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="A falling edge is considered as edge event"/>
@@ -74,10 +74,10 @@
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="The status flag FL is not cleared by hardware and is used as &#x201c;sticky&#x201d; bit. Once set, it is not influenced by any edge until it becomes cleared by software."/>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="The status flag FL rebuilds a level detection of the desired event. It becomes automatically set with a rising edge if RE&#xa0;=&#xa0;1 or with a falling edge if FE&#xa0;=&#xa0;1. It becomes automatically cleared with a rising edge if RE&#xa0;=&#xa0;0 or with a falling edge if FE&#xa0;=&#xa0;0."/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="0B" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ers_etl/0/b" signalType="SINGAL" direction="IN" isVisible="true">
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="TR0" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ers_etl/0/tr" signalType="SINGAL" direction="IN" isVisible="true">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../ERU001/1.0.8/eru001_0.app#//@consumed.11"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="FL0" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ers_etl/0/fl" signalType="SINGAL" direction="IN" isVisible="true">
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="0A" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ers_etl/0/a" signalType="SINGAL" direction="IN" isVisible="true">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../ERU001/1.0.8/eru001_0.app#//@consumed.12"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="3" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ogu/3">
@@ -95,15 +95,24 @@
     <resourcesList name="gout" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/eru/0/gout3" isResolved="true"/>
     <resourcesList name="tout" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/eru/0/tout3" isResolved="true"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="TOUT3" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ogu/3/tout" signalType="SINGAL" direction="IN" isVisible="true">
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="GOUT3" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ogu/3/gout" signalType="SINGAL" direction="IN" isVisible="true">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../ERU002/1.0.8/eru002_0.app#//@consumed.2"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="PDOUT3" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ogu/3/pdout" signalType="SINGAL" direction="IN" isVisible="true">
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PDIN3" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ogu/3/pdin" signalType="SINGAL" direction="IN" isVisible="true">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../ERU002/1.0.8/eru002_0.app#//@consumed.3"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="IOUT3" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ogu/3/iout" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../ERU002/1.0.8/eru002_0.app#//@consumed.4"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PDOUT3" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ogu/3/pdout" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../ERU002/1.0.8/eru002_0.app#//@consumed.5"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="TRIN3" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ogu/3/trin" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../ERU002/1.0.8/eru002_0.app#//@consumed.6"/>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="GP" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ogu/3/exocon/gp" maxValue="3" minValue="0" startPos="4" stopPos="5" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../ERU002/1.0.8/eru002_0.app#//@consumed.4"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../ERU002/1.0.8/eru002_0.app#//@consumed.7"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <toolTipHelpDescription>Gating Selection for Pattern Detection Result</toolTipHelpDescription>
@@ -114,23 +123,14 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="GEEN" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ogu/3/exocon/geen" maxValue="1" minValue="0" startPos="2" stopPos="2" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../ERU002/1.0.8/eru002_0.app#//@consumed.5"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../ERU002/1.0.8/eru002_0.app#//@consumed.8"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Gating Event Enable</toolTipHelpDescription>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="The event detection is disabled"/>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="The event detection is enabled"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="PDIN3" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ogu/3/pdin" signalType="SINGAL" direction="IN" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../ERU002/1.0.8/eru002_0.app#//@consumed.6"/>
-  </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="IOUT3" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ogu/3/iout" signalType="SINGAL" direction="IN" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../ERU002/1.0.8/eru002_0.app#//@consumed.7"/>
-  </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="TRIN3" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ogu/3/trin" signalType="SINGAL" direction="IN" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../ERU002/1.0.8/eru002_0.app#//@consumed.8"/>
-  </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="GOUT3" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ogu/3/gout" signalType="SINGAL" direction="IN" isVisible="true">
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="TOUT3" description="" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ogu/3/tout" signalType="SINGAL" direction="IN" isVisible="true">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../ERU002/1.0.8/eru002_0.app#//@consumed.9"/>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="IPEN0" URI="http://www.infineon.com/0.1.28/peripheral/eru/0/ogu/3/exocon_ipen0" maxValue="1" minValue="0" startPos="12" stopPos="12" accessPermission="rw">

@@ -92,7 +92,7 @@
 *******************************************************************************/
 /* Master Clock setup parameters */  
 #define   CLK002_CLKCR_PCLKSEL           (0U)
-#define   CLK002_CLKCR_IDIV              (16U)      
+#define   CLK002_CLKCR_IDIV              (1U)      
 #define   CLK002_CLKCR_FDIV              (0U)    
 #define   CLK002_DIRECT_ACCESS_ALLOW     (0xC0U)
 #define   CLK002_DIRECT_ACCESS_DISALLOW  (0xC3U)

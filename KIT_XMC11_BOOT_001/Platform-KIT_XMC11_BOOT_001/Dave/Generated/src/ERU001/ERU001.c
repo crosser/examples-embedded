@@ -190,7 +190,7 @@ void ERU001_Init(void)
 	ERU_EXICON_LD_Msk) | \
 	((uint32_t)(1  << ERU_EXICON_RE_Pos) & \
 			ERU_EXICON_RE_Msk)| \
-	((uint32_t)(1  << ERU_EXICON_FE_Pos) & \
+	((uint32_t)(0  << ERU_EXICON_FE_Pos) & \
 			ERU_EXICON_FE_Msk)| \
 	((uint32_t)(1  << ERU_EXICON_SS_Pos) & \
 			ERU_EXICON_SS_Msk)| \

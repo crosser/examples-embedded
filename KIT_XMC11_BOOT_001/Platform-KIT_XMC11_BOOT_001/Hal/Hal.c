@@ -10,21 +10,21 @@
  *
  * The following DAVE CE settings were used -- note that the order matters.
  *
- * 	MCLK/PCLK:		CLK002/0	Desired Frequency 2000 KHz, PCLK=MCLK, 32.768 Standby for RTC
- * 	Timer:			SYSTM001/0	SysTick Interval 100 mSec, 32 SWTimers, Priority 1
- * 	LED:   			IO004/0		Output Enabled, Default level High, Tristate, Push Pull
- * 	CONNECTED_LED:	IO004/1		Output Enabled, Default level High, Tristate, Push Pull
- * 	DEBUG1:			IO004/2		Output Enabled, Default level Low, Tristate, Push Pull
- * 	DEBUG2:			IO004/3		Output Enabled, Default level Low, Tristate, Push Pull
- * 	EAP_RX_ACK:		IO004/4		Output Enabled, Default level High, Tristate, Push Pull
- * 	EAP_TX_ACK:		IO002/0		Output Disabled, Tristate, Standard Hysteresis
- * 					ERU001/0	Event Request B, Falling Edge, Rising Edge, Not Sticky
- * 					ERU002/0	Pattern Edge Trigger disabled, No Output Gating
- * 					NVIC002/1	Priority 3, Not Enabled at initialization, User Handler: txAckIsr
- * 	EAP_RX + _TX:	UART001/0	Full Duplex, No Parity, One Stop Bit, 8 Data bits, RxFifo 16, TxFifo 16
- * 								Trigger Limit 1, Desired Baud Rate 115200, No Oversampling
- * 								No Interrupt configuration, Rx Pin Tristate
- * 					NVIC002/0	Priority 3, Enable at initialization, User Handler: rxIsr
+ * 	MCLK/PCLK:		CLK002/0			Desired Frequency 32000 KHz, PCLK=MCLK, 32.768 Standby for RTC
+ * 	Timer:			SYSTM001/0			SysTick Interval 100 mSec, 32 SWTimers, Priority 1
+ * 	LED:   			IO004/0		P0.5	Output Enabled, Default level High, Tristate, Push Pull
+ * 	CONNECTED_LED:	IO004/1		P0.6	Output Enabled, Default level High, Tristate, Push Pull
+ * 	DEBUG1:			IO004/2		P0.0	Output Enabled, Default level Low, Tristate, Push Pull
+ * 	DEBUG2:			IO004/3		P0.1	Output Enabled, Default level Low, Tristate, Push Pull
+ * 	EAP_RX_ACK:		IO004/4		P0.2	Output Enabled, Default level High, Tristate, Push Pull
+ * 	EAP_TX_ACK:		IO002/0		P2.2	Output Disabled, Tristate, Standard Hysteresis
+ * 					ERU001/0			Event Request B, Rising Edge, Not Sticky
+ * 					ERU002/0			Pattern Edge Trigger disabled, No Output Gating
+ * 					NVIC002/1			Priority 3, Not Enabled at initialization, User Handler: txAckIsr
+ * 	EAP_RX + _TX:	UART001/0	P2.0/TX	Full Duplex, No Parity, One Stop Bit, 8 Data bits, RxFifo 16, TxFifo 16
+ * 								P2.1/RX	Trigger Limit 1, Desired Baud Rate 115200, No Oversampling
+ * 										No Interrupt configuration, Rx Pin Tristate
+ * 					NVIC002/0			Priority 3, Enable at initialization, User Handler: rxIsr
  *
  * The following Manual Pin Assignments were used in this HAL:
  *
@@ -95,9 +95,8 @@
 #define EAP_RX_INT_ENABLE()         (NVIC002_EnableIRQ(&EAP_RX_INT))
 #define EAP_TX_INT_CLR()            // EAP_TX_INT not used
 
-#define MCLK_TICKS_PER_MS           8000L
-#define ACLK_TICKS_PER_SECOND       8000000L
-#define UART_WATCHDOG_PERIOD        (ACLK_TICKS_PER_SECOND * 250) / 1000
+#define MCLK_TICKS_PER_MS           32000L
+#define EMPTY_LOOPS_PER_MS          90L * (MCLK_TICKS_PER_MS / 2000L)     // constant just found experimentally
 
 #define UART_WATCH_DISABLE()
 #define UART_WATCH_ENABLE()
@@ -175,7 +174,7 @@ void Hal_debugPulse(uint8_t line) {
 void Hal_delay(uint16_t msecs) {
 	volatile uint32_t x;
 	while (msecs--) {
-		for (x=0; x<155; x++) ;
+		for (x=0; x<EMPTY_LOOPS_PER_MS; x++) ;
 	}
 }
 

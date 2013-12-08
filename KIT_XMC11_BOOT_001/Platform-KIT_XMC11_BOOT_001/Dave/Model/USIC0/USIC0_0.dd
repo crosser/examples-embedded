@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <ResourceModel:Peripheral xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="USIC0" description="Universal Serial Interface Channel 0" URI="http://www.infineon.com/0.1.30/peripheral/usic/0">
   <provided xsi:type="ResourceModel:ResourceGroup" name="0" URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.2"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.2"/>
     <resourcesList name="ccfg" requiredResourceUri="http://www.infineon.com/0.1.30/peripheral/usic/0/c0_ccfg" isResolved="true"/>
     <resourcesList name="kscfg" requiredResourceUri="http://www.infineon.com/0.1.30/peripheral/usic/0/c0_kscfg" isResolved="true"/>
     <resourcesList name="fdr" requiredResourceUri="http://www.infineon.com/0.1.30/peripheral/usic/0/c0_fdr" isResolved="true"/>
@@ -165,42 +165,42 @@
     <resourcesList name="receive_buffer_error_int" requiredResourceUri="http://www.infineon.com/0.1.30/peripheral/usic/0/c0_receive_buffer_error_int" isResolved="true"/>
     <resourcesList name="alternate_receive_buffer_int" requiredResourceUri="http://www.infineon.com/0.1.30/peripheral/usic/0/c0_alternate_receive_buffer_int" isResolved="true"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_standard_receive_buffer_int" description="Standard Receive Buffer Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/standard_receive_buffer_int" signalType="INTERRUPT" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.17"/>
-  </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_transmit_shift_int" description="Transmit Shift Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/transmit_shift_int" signalType="INTERRUPT" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.18"/>
-  </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_dout0" description="Shift data output sclkout dout0  " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/dout0" signalType="SINGAL" direction="OUT" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.20"/>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_standard_transmit_buffer_int" description="Standard Transmit Buffer Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/standard_transmit_buffer_int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.17"/>
   </provided>
   <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_data_lost_int" description="Data Lost Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/data_lost_int" signalType="INTERRUPT" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.21"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.18"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_receive_buffer_error_int" description="Receive Buffer Error Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/receive_buffer_error_int" signalType="INTERRUPT" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.22"/>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_dx3ins" description="Selected input signal of DX3 " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/dx3ins" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.19"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_protocol_specific_int" description="Protocol Specific Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/protocol_specific_int" signalType="INTERRUPT" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.23"/>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_alternate_receive_int" description="Alternate Receive Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/alternate_receive_int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.20"/>
   </provided>
   <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_alternate_receive_buffer_int" description="Alternate Receive Buffer Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/alternate_receive_buffer_int" signalType="INTERRUPT" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.25"/>
-  </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_standard_receive_int" description="Standard Receive Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/standard_receive_int" signalType="INTERRUPT" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.26"/>
-  </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_dx0ins" description="Selected input signal of DX0 " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/dx0ins" signalType="SINGAL" direction="IN" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.27"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.21"/>
   </provided>
   <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_receive_start_int" description="Receive Start Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/receive_start_int" signalType="INTERRUPT" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.28"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.22"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_standard_receive_int" description="Standard Receive Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/standard_receive_int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.23"/>
   </provided>
   <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_transmit_buffer_int" description="Transmit Buffer Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/transmit_buffer_int" signalType="INTERRUPT" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.29"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.24"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_protocol_specific_int" description="Protocol Specific Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/protocol_specific_int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.25"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_transmit_buffer_error_int" description="Transmit Buffer Error Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/transmit_buffer_error_int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.26"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_transmit_shift_int" description="Transmit Shift Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/transmit_shift_int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.27"/>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PM" URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/ccr/pm" maxValue="3" minValue="0" startPos="8" stopPos="9" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.30"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.28"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Parity Mode</toolTipHelpDescription>
@@ -211,7 +211,7 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="BRGIEN" URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/ccr/brgien" maxValue="1" minValue="0" startPos="16" stopPos="16" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.32"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.30"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Baud Rate Generator Interrupt Enable</toolTipHelpDescription>
@@ -220,14 +220,14 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="LIMIT" URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/rbctr/limit" maxValue="63" minValue="0" startPos="8" stopPos="13" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.33"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.31"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <toolTipHelpDescription>Limit For Interrupt Generation</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="SIZE" URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/rbctr_size" maxValue="7" minValue="0" startPos="24" stopPos="26" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.34"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.32"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="4"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="4"/>
     <toolTipHelpDescription>Buffer Size</toolTipHelpDescription>
@@ -242,14 +242,14 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="LIMIT" URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/tbctr/limit" maxValue="63" minValue="0" startPos="8" stopPos="13" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.35"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.33"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <toolTipHelpDescription>Limit For Interrupt Generation</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="SIZE" URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/tbctr_size" maxValue="7" minValue="0" startPos="24" stopPos="26" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.36"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.34"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="4"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="4"/>
     <toolTipHelpDescription>Buffer Size</toolTipHelpDescription>
@@ -264,7 +264,7 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="WLE" URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/sctr/wle" maxValue="15" minValue="0" startPos="24" stopPos="27" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.37"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.35"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="7"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="7"/>
     <toolTipHelpDescription>Word Length</toolTipHelpDescription>
@@ -275,32 +275,32 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PDIV" URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/brg/pdiv" maxValue="1023" minValue="0" startPos="16" stopPos="25" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.38"/>
-    <localValue xsi:type="ResourceModel:IntegerValue" value="7c"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="7c"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.36"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <toolTipHelpDescription>Divider Mode: Divider Factor to Generate fPDIV</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="STEP" URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/fdr/step" maxValue="1023" minValue="0" startPos="0" stopPos="9" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.39"/>
-    <localValue xsi:type="ResourceModel:IntegerValue" value="300"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="300"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.37"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="c5"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="c5"/>
     <toolTipHelpDescription>Step Value</toolTipHelpDescription>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_standard_transmit_buffer_int" description="Standard Transmit Buffer Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/standard_transmit_buffer_int" signalType="INTERRUPT" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.40"/>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_standard_receive_buffer_int" description="Standard Receive Buffer Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/standard_receive_buffer_int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.38"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_transmit_buffer_error_int" description="Transmit Buffer Error Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/transmit_buffer_error_int" signalType="INTERRUPT" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.41"/>
-  </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_alternate_receive_int" description="Alternate Receive Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/alternate_receive_int" signalType="INTERRUPT" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.42"/>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_receive_buffer_error_int" description="Receive Buffer Error Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/receive_buffer_error_int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.39"/>
   </provided>
   <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_baud_rate_int" description="Baud Rate Interrupt " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/baud_rate_int" signalType="INTERRUPT" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.43"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.40"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_dx3ins" description="Selected input signal of DX3 " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/dx3ins" signalType="SINGAL" direction="IN" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.16/uart001_0.app#//@consumed.44"/>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_dx0ins" description="Selected input signal of DX0 " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/dx0ins" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.41"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_dout0" description="Shift data output sclkout dout0  " URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/dout0" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.18/uart001_0.app#//@consumed.42"/>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="HPCEN" URI="http://www.infineon.com/0.1.30/peripheral/usic/0/channel/0/ccr_hpcen" maxValue="3" minValue="0" startPos="6" stopPos="7" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>

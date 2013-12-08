@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="ERU001" description="ERU App which provides External Request &amp; &#xA;Trigger configuration functionality." descriptionURL="/doc/html/group___event___request___e_r_s___e_t_l___e_r_u001_app.html" URI="http://www.infineon.com/1.0.8/app/eru001/0" userLabel="TX_ACK_ERU1">
+<ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="ERU001" description="ERU App which provides External Request &amp; &#xA;Trigger configuration functionality." descriptionURL="/doc/html/group___event___request___e_r_s___e_t_l___e_r_u001_app.html" URI="http://www.infineon.com/1.0.8/app/eru001/0">
   <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../IO002/1.0.22/io002_0.app#//@consumed.10"/>
   <provided xsi:type="ResourceModel:VirtualSignal" name="Signal A Input" URI="http://www.infineon.com/1.0.8/app/eru001/0/eru001_input_a" requiredSignalResource="ers_etl/a">
     <localValue xsi:type="ResourceModel:StringValue" value="-1"/>
@@ -24,13 +24,13 @@
     <toolTipHelpDescription>Source select for ERSx</toolTipHelpDescription>
     <item name="A" evalFunction="&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;function ForwardMapping()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;{&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var tempRes = SCM.getResource(&quot;eru001_dummy&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var Res = SCM.getResource(&quot;ers_etl/exicon/ss&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var Res1 = SCM.getResource(&quot;ers_etl/exicon/na&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var Res2 = SCM.getResource(&quot;ers_etl/exicon/nb&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(Res,0);&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(Res1,0);&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(Res2,0);&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(tempRes,0);&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;function BackwardMapping()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;{&#xD;&#xA;              &#x9;&#x9;&#x9;&#x9;  var tempRes = SCM.getResource(&quot;eru001_dummy&quot;);&#xD;&#xA;              &#x9;&#x9;&#x9;&#x9;  var value = SCM.getIntValue(tempRes);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if (value === 0 ) { &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(currentResource,1);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;} else if (value == -1 ){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(currentResource,1);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(currentResource,0);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;" URI="http://www.infineon.com/1.0.8/app/eru001/0/eru001_erwsourceselect/0" downWardmappedList="//@consumed.7 //@consumed.5 //@consumed.6 //@consumed.2" maxValue="1" minValue="0">
       <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
-      <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <localValue xsi:type="ResourceModel:StringValue" value="1"/>
       <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
       <toolTipHelpDescription>Source A is selected</toolTipHelpDescription>
     </item>
     <item name="A'" evalFunction="&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;function ForwardMapping()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;{&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var tempRes = SCM.getResource(&quot;eru001_dummy&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var Res = SCM.getResource(&quot;ers_etl/exicon/ss&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var Res1 = SCM.getResource(&quot;ers_etl/exicon/na&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var Res2 = SCM.getResource(&quot;ers_etl/exicon/nb&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(Res,0);&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(Res1,1);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(Res2,0);&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(tempRes,1);&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;function BackwardMapping()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;          &#x9;&#x9;&#x9;&#x9;  var tempRes = SCM.getResource(&quot;eru001_dummy&quot;);&#xD;&#xA;&#x9;          &#x9;&#x9;&#x9;&#x9;  var value = SCM.getIntValue(tempRes);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if (value == 1 ) { &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(currentResource,1);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;} else if (value == -1 ){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(currentResource,0);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(currentResource,0);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;" URI="http://www.infineon.com/1.0.8/app/eru001/0/eru001_erwsourceselect/1" downWardmappedList="//@consumed.7 //@consumed.5 //@consumed.6 //@consumed.2" maxValue="1" minValue="0">
       <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-      <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <localValue xsi:type="ResourceModel:StringValue" value="0"/>
       <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
       <toolTipHelpDescription>Source select for ERSx</toolTipHelpDescription>
     </item>
@@ -98,12 +98,12 @@
   <provided xsi:type="ResourceModel:EnumerationParameter" name="Falling edge" evalFunction="&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;function ForwardMapping()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  &#x9;var Res = SCM.getResource(&quot;ers_etl/exicon/fe&quot;); &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var value = SCM.getIntValue(currentResource);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(Res,value);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;function BackwardMapping()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  &#x9;var Res = SCM.getResource(&quot;ers_etl/exicon/fe&quot;); &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var value = SCM.getIntValue(Res); &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(currentResource,value);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;" URI="http://www.infineon.com/1.0.8/app/eru001/0/eru001_erwedgedetfalled" downWardmappedList="//@consumed.8" multipleSelections="true">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <localValue xsi:type="ResourceModel:StringValue" value="0"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Edge detect-falling edge</toolTipHelpDescription>
     <item name="Falling edge" evalFunction="&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;function ForwardMapping()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  &#x9;var Res = SCM.getResource(&quot;ers_etl/exicon/fe&quot;); &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var value = SCM.getIntValue(currentResource);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(value == 1){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(Res,1);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}else if(value === 0){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(Res,0);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;function BackwardMapping()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  &#x9;var Res = SCM.getResource(&quot;ers_etl/exicon/fe&quot;); &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var value = SCM.getIntValue(Res); &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if (value == -1) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(currentResource,0);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;} else if (value === 0) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(currentResource,0);&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}else if(value ==1){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(currentResource,1);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;" URI="http://www.infineon.com/1.0.8/app/eru001/0/eru001_erwedgedetfalled/0" downWardmappedList="//@consumed.8" maxValue="1" minValue="0">
       <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-      <localValue xsi:type="ResourceModel:StringValue" value="1"/>
-      <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+      <localValue xsi:type="ResourceModel:StringValue" value="0"/>
+      <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
       <toolTipHelpDescription>Edge detect-falling edge</toolTipHelpDescription>
     </item>
   </provided>
@@ -134,7 +134,7 @@
   <provided xsi:type="ResourceModel:StringParameter" name="Status Flag" evalFunction="&#xD;&#xA;          function ForwardMapping()&#xD;&#xA;          {&#xD;&#xA;            var Res0 = SCM.getResource(&quot;ers_etl/exicon/ld&quot;); &#xD;&#xA;            var value0 = SCM.getIntValue(Res0); &#xD;&#xA;            var Res1 = SCM.getResource(&quot;ers_etl/exicon/re&quot;); &#xD;&#xA;            var value1 = SCM.getIntValue(Res1);&#xD;&#xA;            var Res2 = SCM.getResource(&quot;ers_etl/exicon/fe&quot;); &#xD;&#xA;            var value2 = SCM.getIntValue(Res2);&#xD;&#xA;          }&#xD;&#xA;          function BackwardMapping()&#xD;&#xA;          {&#xD;&#xA;            var Res0 = SCM.getResource(&quot;ers_etl/exicon/ld&quot;); &#xD;&#xA;            var value0 = SCM.getIntValue(Res0); &#xD;&#xA;            var Res1 = SCM.getResource(&quot;ers_etl/exicon/re&quot;); &#xD;&#xA;            var value1 = SCM.getIntValue(Res1);&#xD;&#xA;            var Res2 = SCM.getResource(&quot;ers_etl/exicon/fe&quot;); &#xD;&#xA;            var value2 = SCM.getIntValue(Res2);&#xD;&#xA;            if((value0 === 0) &amp;&amp; (value1 == 1) &amp;&amp; (value2 == 0)){&#xD;&#xA;              SCM.setStringValue(currentResource, &quot;Set by rising edge, never cleared&quot;);&#xD;&#xA;            }&#xD;&#xA;            else  if((value0 === 0) &amp;&amp; (value1 == 0) &amp;&amp; (value2 == 1)){&#xD;&#xA;              SCM.setStringValue(currentResource, &quot;Set by falling edge, never cleared&quot;);&#xD;&#xA;            }&#xD;&#xA;            else  if((value0 === 0) &amp;&amp; (value1 == 1) &amp;&amp; (value2 == 1)){&#xD;&#xA;              SCM.setStringValue(currentResource, &quot;Set by both edge, never cleared&quot;);&#xD;&#xA;            }&#xD;&#xA;            else  if((value0 == 1) &amp;&amp; (value1 == 0) &amp;&amp; (value2 == 1)){&#xD;&#xA;              SCM.setStringValue(currentResource, &quot;Set by falling edge, cleared by rising edge&quot;);&#xD;&#xA;            }&#xD;&#xA;            else  if((value0 == 1) &amp;&amp; (value1 == 1) &amp;&amp; (value2 == 0)){&#xD;&#xA;              SCM.setStringValue(currentResource, &quot;Set by rising edge, cleared by falling edge&quot;);&#xD;&#xA;            }&#xD;&#xA;&#x9;&#x9;&#x9;else  if((value0 == 1) &amp;&amp; (value1 == 1) &amp;&amp; (value2 == 1)){&#xD;&#xA;              SCM.setStringValue(currentResource, &quot;Set by both edges (Not Allowed)&quot;);&#xD;&#xA;            }&#xD;&#xA;            else{&#xD;&#xA;              SCM.setStringValue(currentResource,&quot; &quot;);&#xD;&#xA;          }&#xD;&#xA;        }&#xD;&#xA;        " URI="http://www.infineon.com/1.0.8/app/eru001/0/eru001_erostring">
     <defaultValue xsi:type="ResourceModel:StringValue" value=" "/>
     <localValue xsi:type="ResourceModel:StringValue" value=" "/>
-    <globalValue xsi:type="ResourceModel:StringValue" value="Set by both edges (Not Allowed)"/>
+    <globalValue xsi:type="ResourceModel:StringValue" value="Set by rising edge, cleared by falling edge"/>
     <toolTipHelpDescription>Selected trigger setting (non-editable)</toolTipHelpDescription>
   </provided>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/eru001/0/ers_etl">
@@ -149,10 +149,10 @@
     <globalValue xsi:type="ResourceModel:IntegerValue" value="a"/>
     <requiredResource uriString="" uriType="LOCALTYPE"/>
   </consumed>
-  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/eru001/0/ers_etl/tr" isSystemDefined="true">
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/eru001/0/ers_etl/fl" isSystemDefined="true">
     <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../ERU0/ERU0_0.dd#//@provided.1"/>
   </consumed>
-  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/eru001/0/ers_etl/a" isSystemDefined="true">
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/eru001/0/ers_etl/b" isSystemDefined="true">
     <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../ERU0/ERU0_0.dd#//@provided.2"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/eru001/0/ers_etl/exicon/na" upWardMappingList="//@provided.4/@item.0 //@provided.4/@item.1 //@provided.4/@item.2 //@provided.4/@item.3 //@provided.4/@item.4 //@provided.4/@item.5 //@provided.4/@item.6 //@provided.4/@item.7 //@provided.4/@item.8 //@provided.4/@item.9 //@provided.4/@item.10 //@provided.4/@item.11" isSystemDefined="true">
@@ -171,9 +171,9 @@
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/eru001/0/ers_etl/exicon/fe" upWardMappingList="//@provided.5 //@provided.5/@item.0 //@provided.8" isSystemDefined="true">
-    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <downWardmappedList xsi:type="ResourceModel:BitField" href="../../ERU0/ERU0_0.dd#//@provided.6"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/eru001/0/ers_etl/exicon/re" upWardMappingList="//@provided.6 //@provided.6/@item.0 //@provided.8" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
@@ -185,13 +185,13 @@
     <downWardmappedList xsi:type="ResourceModel:BitField" href="../../ERU0/ERU0_0.dd#//@provided.8"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
   </consumed>
-  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/eru001/0/ers_etl/b" isSystemDefined="true">
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/eru001/0/ers_etl/tr" isSystemDefined="true">
     <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../ERU0/ERU0_0.dd#//@provided.9"/>
   </consumed>
-  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/eru001/0/ers_etl/fl" isSystemDefined="true">
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/eru001/0/ers_etl/a" isSystemDefined="true">
     <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../ERU0/ERU0_0.dd#//@provided.10"/>
   </consumed>
-  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/eru001/0/SignalConfigurator_1816322599" bindingMode="READ" isSystemDefined="true">
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/eru001/0/SignalConfigurator_1227305118" bindingMode="READ" isSystemDefined="true">
     <downWardmappedList xsi:type="ResourceModel:App" href="../../ERU002/1.0.8/eru002_0.app#/"/>
     <requiredResource uriString="app/eru002/0" uriType="LOCALTYPE"/>
   </consumed>
@@ -215,7 +215,7 @@
   <datagenerate fileName="ERU001.c" templateFileName="ERU001c.jet"/>
   <datagenerate fileName="ERU001_Conf.c" templateFileName="ERU001Confc.jet"/>
   <datagenerate fileName="ERU001_Conf.h" fileType="HFILE" templateFileName="ERU001Confh.jet"/>
-  <connections sourceSignal="app/eru001/0/eru001_triggerpulse" targetSignal="SignalConfigurator_1816322599/eru002_trin" isSystemDefined="false"/>
+  <connections sourceSignal="app/eru001/0/eru001_triggerpulse" targetSignal="SignalConfigurator_1227305118/eru002_trin" isSystemDefined="false"/>
   <softwareIdList>45.0.1</softwareIdList>
   <softwareIdList>45.0.2</softwareIdList>
   <softwareIdList>45.0.3</softwareIdList>

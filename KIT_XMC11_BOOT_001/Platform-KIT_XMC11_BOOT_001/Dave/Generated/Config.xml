@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Project MotherSystem_Version="" Name="Blinker-DaveCE-XMC1100_BootKit" Path="C:\Users\gcohler\Documents\Workspaces\DAVE3\KIT_XMC11_BOOT_001\Blinker-DaveCE-XMC1100_BootKit">
+<Project MotherSystem_Version="" Name="Blinker-KIT_XMC11_BOOT_001" Path="C:\Users\gcohler\Documents\Workspaces\DAVE3\Clock_32MHz\Blinker-KIT_XMC11_BOOT_001">
     <COMPILER>
         <Name>ARM-GCC</Name>
         <Version/>
@@ -203,10 +203,10 @@
         <Assembly_Files/>
     </Generated_Files>
     <Include_Path>
+        <Path>\Dave\Generated\inc\DAVESupport</Path>
+        <Path>\Dave\Generated\inc\LIBS</Path>
         <Path>\Em</Path>
         <Path>\Hal</Path>
-        <Path>\Dave\Generated\inc\LIBS</Path>
-        <Path>\Dave\Generated\inc\DAVESupport</Path>
     </Include_Path>
     <Preprocessor_Symbols>
         <Assembler_Symbol>UC_ID=1101007</Assembler_Symbol>

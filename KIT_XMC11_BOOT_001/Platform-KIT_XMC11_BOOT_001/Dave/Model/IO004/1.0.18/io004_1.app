@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="IO004" description="IO004 App is used when the user needs to&#xA;use a digital pin as a standalone GPIO pin." descriptionURL="/doc/html/group___software___controlled___i_o___i_o004_app.html" URI="http://www.infineon.com/1.0.18/app/io004/1" userLabel="CONNECTED_LED">
+<ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="IO004" description="IO004 App is used when the user needs to&#xA;use a digital pin as a standalone GPIO pin." descriptionURL="/doc/html/group___software___controlled___i_o___i_o004_app.html" URI="http://www.infineon.com/1.0.18/app/io004/1">
   <provided xsi:type="ResourceModel:VirtualSignal" name="Software Controlled Output Signal" URI="http://www.infineon.com/1.0.18/app/io004/1/pin_sw_vs" requiredSignalResource="pin/swreg_out" canExpose="false">
     <localValue xsi:type="ResourceModel:StringValue" value="-1"/>
     <globalValue xsi:type="ResourceModel:StringValue" value="-1"/>
@@ -179,7 +179,7 @@ on Pad class selection.</toolTipHelpDescription>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <requiredResource uriString="" uriType="LOCALTYPE"/>
   </consumed>
-  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.18/app/io004/1/pin/pad" isSystemDefined="true">
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.18/app/io004/1/pin/swreg_out" isSystemDefined="true">
     <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P0/P0_0.dd#//@provided.8"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.18/app/io004/1/pin/iocr_oe" upWardMappingList="//@provided.2 //@provided.2/@item.0" isSystemDefined="true">
@@ -206,7 +206,7 @@ on Pad class selection.</toolTipHelpDescription>
     <localValue xsi:type="ResourceModel:IntegerValue" value="4"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="4"/>
   </consumed>
-  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.18/app/io004/1/pin/swreg_out" isSystemDefined="true">
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.18/app/io004/1/pin/pad" isSystemDefined="true">
     <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P0/P0_0.dd#//@provided.13"/>
   </consumed>
   <categoryDescription description="Peripheral Specific Apps" name="Peripheral Specific Apps">

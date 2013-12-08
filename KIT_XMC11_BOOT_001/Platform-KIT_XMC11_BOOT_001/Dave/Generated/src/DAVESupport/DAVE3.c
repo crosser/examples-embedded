@@ -88,29 +88,29 @@ void DAVE_Init(void)
 //****************************************************************************
 	//  MUX configurations
 	DAVE_MUX_PreInit(); 
-	//  Initialization of app 'NVIC002'		     
-	NVIC002_Init();
-	 
 	//  Initialization of app 'CLK002'		     
 	CLK002_Init();
-	 
-	//  Initialization of app 'UART001'		     
-	UART001_Init();
-	 
-	//  Initialization of app 'IO004'		     
-	IO004_Init();
 	 
 	//  Initialization of app 'SYSTM001'		     
 	SYSTM001_Init();
 	 
-	//  Initialization of app 'ERU001'		     
-	ERU001_Init();
+	//  Initialization of app 'UART001'		     
+	UART001_Init();
+	 
+	//  Initialization of app 'NVIC002'		     
+	NVIC002_Init();
 	 
 	//  Initialization of app 'IO002'		     
 	IO002_Init();
 	 
+	//  Initialization of app 'ERU001'		     
+	ERU001_Init();
+	 
 	//  Initialization of app 'ERU002'		     
 	ERU002_Init();
+	 
+	//  Initialization of app 'IO004'		     
+	IO004_Init();
 	
       
 	//  MUX configurations

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
-<ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="NVIC002" description="App which allows user &#xA;to configure an interrupt node.&#xA;NVIC002 App maps the user-defined &#xA;interrupt handler to the actual &#xA;interrupt node via a #define &#xA;statement." descriptionURL="/doc/html/group___n_v_i_c002_app.html" URI="http://www.infineon.com/1.0.18/app/nvic002/0" userLabel="UART_RX_Int">
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../UART001/1.0.16/uart001_0.app#//@consumed.49"/>
+<ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="NVIC002" description="App which allows user &#xA;to configure an interrupt node.&#xA;NVIC002 App maps the user-defined &#xA;interrupt handler to the actual &#xA;interrupt node via a #define &#xA;statement." descriptionURL="/doc/html/group___n_v_i_c002_app.html" URI="http://www.infineon.com/1.0.18/app/nvic002/0">
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../UART001/1.0.18/uart001_0.app#//@consumed.49"/>
   <provided xsi:type="ResourceModel:VirtualSignal" name="Interrupt Node" URI="http://www.infineon.com/1.0.18/app/nvic002/0/nvic002_vs" requiredSignalResource="nvicnode/signal_in">
     <localValue xsi:type="ResourceModel:StringValue" value="-1"/>
     <globalValue xsi:type="ResourceModel:StringValue" value="-1"/>
@@ -58,15 +58,15 @@
     <globalValue xsi:type="ResourceModel:StringValue" value="-1"/>
   </provided>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.18/app/nvic002/0/nvicnode">
-    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../CPU/CPU_0.dd#//@provided.3"/>
+    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../CPU/CPU_0.dd#//@provided.0"/>
     <requiredResource uriString="peripheral/cpu/0/nvic/interrupt/*" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.18/app/nvic002/0/nvicnode/signal_in" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../CPU/CPU_0.dd#//@provided.4"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../CPU/CPU_0.dd#//@provided.1"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.18/app/nvic002/0/nvicnode/ipr_pri" upWardMappingList="//@provided.1 //@provided.3" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="fc"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../CPU/CPU_0.dd#//@provided.5"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../CPU/CPU_0.dd#//@provided.2"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="fc"/>
   </consumed>
   <propertyConstants name="uriDevice" value="device">
