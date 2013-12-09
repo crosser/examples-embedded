@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ifx.davex.uimodel:UIDataModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.ifx.davex.uimodel="com.ifx.davex.uimodel">
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="DefaultPage" displayName="UART Configuration" className="IfxGroupBox" controlId="1317816616984">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group81" displayName="General" className="IfxGroupBox" controlId="1317963847343">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/uart001_erwmode" displayName="Operation Mode" className="EnumerationType" paramName="app/uart001/0/uart001_erwmode:Operation Mode" controlId="1317816626437">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/uart001_erwparity" displayName="Parity Selection" className="EnumerationType" constraint="var Value = CM.getSoftwareId();&#xD;&#xA;&#xD;&#xA;if((Value == &quot;45.0.1&quot;) || (Value == &quot;45.0.2&quot;) || (Value == &quot;45.0.3&quot;) || (Value == &quot;45.2.3&quot;) || (Value == &quot;45.4.2&quot;) || (Value == &quot;45.4.3&quot;) || (Value == &quot;45.0200.1&quot;) || (Value ==&quot;45.0200.2&quot;) || (Value ==&quot;45.0200.3&quot;) || (Value ==&quot;45.0202.3&quot;) || (Value ==&quot;45.0204.2&quot;) || (Value ==&quot;45.0204.3&quot;))&#xD;&#xA;{&#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;}else {&#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;}" paramName="app/uart001/0/uart001_erwparity:Parity Selection" controlId="1317816683875">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/uart001_erwstopbit" displayName="Stop Bit" className="EnumerationType" paramName="app/uart001/0/uart001_erwstopbit:Select the stop bit" controlId="1317816673765">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/uart001_irwdatabits" displayName="Data bits" className="IntegerType" paramName="app/uart001/0/uart001_irwdatabits:Data bits" controlId="1326723757553">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalSpan="5"/>
+        <conversionType>dec</conversionType>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group92" displayName="Baud Rate" className="IfxGroupBox" controlId="1317963889171">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/uart001_iroclock" displayName="Peripheral Clock" readonly="true" className="IntegerType" paramName="app/uart001/0/uart001_iroclock:Peripheral Clock" controlId="1317964750250" defaultType="MHz" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>MHz</conversionType>
+        <conversionType>KHz</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/uart001_irwbaudrate" displayName="Desired Baud Rate" className="IntegerType" paramName="app/uart001/0/uart001_irwbaudrate:Select desired Baud Rate(baud)" controlId="1317816719000" defaultType="baud" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>baud</conversionType>
+        <conversionType>Kbaud</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/uart001_irocalbaudrate" displayName="Real Baud Rate" readonly="true" className="IntegerType" paramName="app/uart001/0/uart001_irocalbaudrate:Real Baud rate (baud)" controlId="1317816828593" defaultType="baud" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>baud</conversionType>
+        <conversionType>Kbaud</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group35" displayName="Baud Advanced Settings" className="IfxGroupBox" controlId="1360848075788">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/Baud_Advanced_Settings" displayName="" className="EnumerationType" paramName="app/uart001/0/Baud_Advanced_Settings:Baud advanced Settings" controlId="1360847792308">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        </subControls>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/Time_Quanta" displayName="Time Quanta (DCTQ)" className="IntegerType" constraint="if((CM.getParamValue(&quot;app/uart001/0/Baud_Advanced_Settings/0&quot;) == &quot;1&quot;))  {&#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;else {&#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;}" paramName="app/uart001/0/Time_Quanta:Time Quanta (DCTQ)" controlId="1360848040625">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+          <conversionType>dec</conversionType>
+        </subControls>
+        <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group55" displayName="Transmit FIFO" className="IfxGroupBox" controlId="1331576310845">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/uart001_irwtxfifosize" displayName="Size" className="EnumerationType" paramName="app/uart001/0/uart001_irwtxfifosize:Transmit FIFO size (bytes)" controlId="1331576334635">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/uart001_irwtxfifotrigger" displayName="Trigger Limit" className="IntegerType" paramName="app/uart001/0/uart001_irwtxfifotrigger:Transmit FIFO trigger limit" controlId="1331576338910">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>dec</conversionType>
+        <conversionType>hex</conversionType>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group8" displayName="Receive FIFO" className="IfxGroupBox" controlId="1331576322436">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/uart001_irwrxfifosize" displayName="Size" className="EnumerationType" paramName="app/uart001/0/uart001_irwrxfifosize:Receive FIFO size (bytes)" controlId="1331576344042">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/uart001_irwrxfifotrigger" displayName="Trigger Limit" className="IntegerType" paramName="app/uart001/0/uart001_irwrxfifotrigger:Receive FIFO trigger limit" controlId="1331576350610">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>dec</conversionType>
+        <conversionType>hex</conversionType>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/uart001_Notefifosize" displayName="*Note" readonly="true" className="StringType" paramName="app/uart001/0/uart001_Notefifosize:*Note" controlId="1363763518263">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalSpan="2"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+  </controls>
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Page74" displayName="Protocol Interrupt Configuration" className="IfxGroupBox" controlId="1331362606373">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group55" displayName="UART Protocol Specific Interrupt Configuration" className="IfxGroupBox" controlId="1331362762358">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/uart001_erwRecvNoiseDetectInt" displayName="Enable receiver noise detection interrupt" labelRequired="false" className="EnumerationType" paramName="app/uart001/0/uart001_erwRecvNoiseDetectInt:Enable receiver noise detection interrupt" controlId="1331362800063">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/uart001_erwFmtErrorInt" displayName="Enable format error interrupt" labelRequired="false" className="EnumerationType" paramName="app/uart001/0/uart001_erwFmtErrorInt:Enable format error interrupt" controlId="1331362808674">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/uart001_erwFrameFinishInt" displayName="Enable frame finished interrupt" labelRequired="false" className="EnumerationType" paramName="app/uart001/0/uart001_erwFrameFinishInt:Enable frame finished interrupt" controlId="1331362819891">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+  </controls>
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Page29" displayName="Pin Configuration" className="IfxGroupBox" controlId="1337159089571">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group84" displayName="Pin Configuration" className="IfxGroupBox" constraint="" controlId="1337159119008">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group90" displayName="Rx Pin Settings" className="IfxGroupBox" constraint="" controlId="1337159122596">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/uart001_erwInputChar" displayName="Input characteristics" className="EnumerationType" constraint="if((CM.getParamValue(&quot;app/uart001/0/uart001_erwmode/0&quot;) == &quot;1&quot;)) {&#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;}else {&#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;}" paramName="app/uart001/0/uart001_erwInputChar:Input characteristics" controlId="1337159160005">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        </subControls>
+        <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group82" displayName="Tx Pin Settings" className="IfxGroupBox" constraint="if((CM.getSoftwareId().substring(0,1).compareTo(&quot;1&quot;) == 0))&#xD;&#xA;{&#xD;&#xA; CM.setEnable(false);&#xD;&#xA; CM.setVisible(false); &#xD;&#xA;}&#xD;&#xA;else&#xD;&#xA;{    &#xD;&#xA;   if((CM.getParamValue(&quot;app/uart001/0/uart001_erwmode/0&quot;) == &quot;1&quot;)||(CM.getParamValue(&quot;app/uart001/0/uart001_erwmode/1&quot;) == &quot;1&quot;))  {&#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;    else {&#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;   }&#xD;&#xA;}" controlId="1337159126808">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/uart001_erwTxPadClass" displayName="Pad Class" className="EnumerationType" constraint="if((CM.getSoftwareId().substring(0,1).compareTo(&quot;4&quot;) == 0))&#xD;&#xA;{&#xD;&#xA; if((CM.getParamValue(&quot;app/uart001/0/uart001_erwmode/0&quot;) == &quot;1&quot;)||(CM.getParamValue(&quot;app/uart001/0/uart001_erwmode/1&quot;) == &quot;1&quot;))  {&#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;    else {&#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;   }&#xD;&#xA;}&#xD;&#xA;else&#xD;&#xA;{&#xD;&#xA;    CM.setEnable(false);&#xD;&#xA;    CM.setVisible(false); &#xD;&#xA;}" paramName="app/uart001/0/uart001_erwTxPadClass:Pad Class" controlId="1337159168616">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        </subControls>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/uart001/0/uart001_erwPadDriverModeTx" displayName="Driver Mode" className="EnumerationType" constraint="if((CM.getSoftwareId().substring(0,1).compareTo(&quot;4&quot;) == 0))&#xD;&#xA;{&#xD;&#xA;  if((CM.getParamValue(&quot;app/uart001/0/uart001_erwmode/0&quot;) == &quot;1&quot;)||(CM.getParamValue(&quot;app/uart001/0/uart001_erwmode/1&quot;) == &quot;1&quot;))  {&#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;    else {&#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;   }&#xD;&#xA;}&#xD;&#xA;else&#xD;&#xA;{&#xD;&#xA;    CM.setEnable(false);&#xD;&#xA;    CM.setVisible(false); &#xD;&#xA;}&#xD;&#xA;" paramName="app/uart001/0/uart001_erwPadDriverModeTx:Tx Driver Mode" controlId="1337159187539">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        </subControls>
+        <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+  </controls>
+</com.ifx.davex.uimodel:UIDataModel>
