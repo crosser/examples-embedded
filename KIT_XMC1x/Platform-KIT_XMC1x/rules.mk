@@ -1,15 +1,11 @@
 include $(PLATFORM)/common.mk
 include $(PLATFORM)/local.mk
 
-ifeq ($(FAMILY), KIT_XMC11_BOOT_001)
+ifeq ($(BOARD), KIT_XMC11_BOOT_001)
     UC_ID = 1101007
     MCU = XMC1100
     DEVICE = XMC1100-T038F0064
-else ifeq ($(FAMILY), KIT_XMC13_BOOT_001)
-    UC_ID = 1301027
-    MCU = XMC1300
-    DEVICE = XMC1302-T038X0200
-else ifeq ($(FAMILY), KIT_XMC1X_AK_MOTOR_001)
+else ifeq ($(BOARD), KIT_XMC13_BOOT_001)
     UC_ID = 1301027
     MCU = XMC1300
     DEVICE = XMC1302-T038X0200
@@ -19,7 +15,7 @@ TOOLS ?= $(EMMOCO-ROOT)/armtools/bin
 GCCARCH = arm-none-eabi
 
 COPTS = \
-	-DUC_ID=$(UC_ID) -DDAVE_CE -D$(FAMILY) $(CINCS) -O0 -ffunction-sections -Wall -std=gnu99 -mfloat-abi=soft \
+	-DUC_ID=$(UC_ID) -DDAVE_CE -D$(BOARD) $(CINCS) -O0 -ffunction-sections -Wall -std=gnu99 -mfloat-abi=soft \
 	-c -fmessage-length=0 -MMD -MP -mcpu=cortex-m0 -mthumb -g3 -gdwarf-2
 	
 LDLIBS = \
@@ -29,17 +25,17 @@ LDLIBS = \
 	-L$(DAVE-PATH)/ARM-GCC/lib/gcc/arm-none-eabi/4.7.4/armv6-m
 
 LDOPTS = \
-	-T $(PLATFORM)/$(FAMILY)/ldfile.ld \
+	-T $(PLATFORM)/$(BOARD)/ldfile.ld \
 	-nostartfiles \
 	$(LDLIBS) \
 	-lgcc -Map=$(OUTDIR)/$(MAIN).map 
 
 CINCS = \
 	-I$(PLATFORM)/Hal \
-	-I$(PLATFORM)/$(FAMILY)/Dave/Generated/inc/LIBS \
-	-I$(PLATFORM)/$(FAMILY)/Dave/Generated/inc/MOTORLIBS \
-	-I$(PLATFORM)/$(FAMILY)/Dave/Generated/inc/MATHLIBS \
-	-I$(PLATFORM)/$(FAMILY)/Dave/Generated/inc/DAVESupport \
+	-I$(PLATFORM)/$(BOARD)/Dave/Generated/inc/LIBS \
+	-I$(PLATFORM)/$(BOARD)/Dave/Generated/inc/MOTORLIBS \
+	-I$(PLATFORM)/$(BOARD)/Dave/Generated/inc/MATHLIBS \
+	-I$(PLATFORM)/$(BOARD)/Dave/Generated/inc/DAVESupport \
 	-I$(DAVE-PATH)/CMSIS/Include \
 	-I$(DAVE-PATH)/CMSIS/Infineon/Include \
 	-I$(DAVE-PATH)/ARM-GCC/arm-none-eabi/include \
@@ -67,60 +63,60 @@ $(OUTFILE): $(OBJECTS) $(DAVEOBJECTS)
 	$(OBJCOPY) -O binary $(OUTFILE) $(BINFILE)
 	$(SIZE) $(OUTFILE)
 
-$(OUTDIR)/startup_$(MCU).obj: $(PLATFORM)/$(FAMILY)/Startup/startup_$(MCU).s
+$(OUTDIR)/startup_$(MCU).obj: $(PLATFORM)/$(BOARD)/Startup/startup_$(MCU).s
 	$(CC) -x assembler-with-cpp $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/system_$(MCU).obj: $(PLATFORM)/$(FAMILY)/Startup/system_$(MCU).c
+$(OUTDIR)/system_$(MCU).obj: $(PLATFORM)/$(BOARD)/Startup/system_$(MCU).c
 	$(CC) $< -o $@ $(CFLAGS) 
 
 $(OUTDIR)/System_LibcStubs.obj: $(PLATFORM)/Lib/System_LibcStubs.c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/CLK002.obj: $(PLATFORM)/$(FAMILY)/Dave/Generated/src/CLK002/CLK002.c
+$(OUTDIR)/CLK002.obj: $(PLATFORM)/$(BOARD)/Dave/Generated/src/CLK002/CLK002.c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/DAVE3.obj: $(PLATFORM)/$(FAMILY)/Dave/Generated/src/DAVESupport/DAVE3.c
+$(OUTDIR)/DAVE3.obj: $(PLATFORM)/$(BOARD)/Dave/Generated/src/DAVESupport/DAVE3.c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/MULTIPLEXER.obj: $(PLATFORM)/$(FAMILY)/Dave/Generated/src/DAVESupport/MULTIPLEXER.c
+$(OUTDIR)/MULTIPLEXER.obj: $(PLATFORM)/$(BOARD)/Dave/Generated/src/DAVESupport/MULTIPLEXER.c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/ERU001_Conf.obj: $(PLATFORM)/$(FAMILY)/Dave/Generated/src/ERU001/ERU001_Conf.c
+$(OUTDIR)/ERU001_Conf.obj: $(PLATFORM)/$(BOARD)/Dave/Generated/src/ERU001/ERU001_Conf.c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/ERU001.obj: $(PLATFORM)/$(FAMILY)/Dave/Generated/src/ERU001/ERU001.c
+$(OUTDIR)/ERU001.obj: $(PLATFORM)/$(BOARD)/Dave/Generated/src/ERU001/ERU001.c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/ERU002_Conf.obj: $(PLATFORM)/$(FAMILY)/Dave/Generated/src/ERU002/ERU002_Conf.c
+$(OUTDIR)/ERU002_Conf.obj: $(PLATFORM)/$(BOARD)/Dave/Generated/src/ERU002/ERU002_Conf.c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/ERU002.obj: $(PLATFORM)/$(FAMILY)/Dave/Generated/src/ERU002/ERU002.c
+$(OUTDIR)/ERU002.obj: $(PLATFORM)/$(BOARD)/Dave/Generated/src/ERU002/ERU002.c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/IO002_Conf.obj: $(PLATFORM)/$(FAMILY)/Dave/Generated/src/IO002/IO002_Conf.c
+$(OUTDIR)/IO002_Conf.obj: $(PLATFORM)/$(BOARD)/Dave/Generated/src/IO002/IO002_Conf.c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/IO002.obj: $(PLATFORM)/$(FAMILY)/Dave/Generated/src/IO002/IO002.c
+$(OUTDIR)/IO002.obj: $(PLATFORM)/$(BOARD)/Dave/Generated/src/IO002/IO002.c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/IO004_Conf.obj: $(PLATFORM)/$(FAMILY)/Dave/Generated/src/IO004/IO004_Conf.c
+$(OUTDIR)/IO004_Conf.obj: $(PLATFORM)/$(BOARD)/Dave/Generated/src/IO004/IO004_Conf.c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/IO004.obj: $(PLATFORM)/$(FAMILY)/Dave/Generated/src/IO004/IO004.c
+$(OUTDIR)/IO004.obj: $(PLATFORM)/$(BOARD)/Dave/Generated/src/IO004/IO004.c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/NVIC002_Conf.obj: $(PLATFORM)/$(FAMILY)/Dave/Generated/src/NVIC002/NVIC002_Conf.c
+$(OUTDIR)/NVIC002_Conf.obj: $(PLATFORM)/$(BOARD)/Dave/Generated/src/NVIC002/NVIC002_Conf.c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/NVIC002.obj: $(PLATFORM)/$(FAMILY)/Dave/Generated/src/NVIC002/NVIC002.c
+$(OUTDIR)/NVIC002.obj: $(PLATFORM)/$(BOARD)/Dave/Generated/src/NVIC002/NVIC002.c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/SYSTM001.obj: $(PLATFORM)/$(FAMILY)/Dave/Generated/src/SYSTM001/SYSTM001.c
+$(OUTDIR)/SYSTM001.obj: $(PLATFORM)/$(BOARD)/Dave/Generated/src/SYSTM001/SYSTM001.c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/UART001_Conf.obj: $(PLATFORM)/$(FAMILY)/Dave/Generated/src/UART001/UART001_Conf.c
+$(OUTDIR)/UART001_Conf.obj: $(PLATFORM)/$(BOARD)/Dave/Generated/src/UART001/UART001_Conf.c
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/UART001.obj: $(PLATFORM)/$(FAMILY)/Dave/Generated/src/UART001/UART001.c
+$(OUTDIR)/UART001.obj: $(PLATFORM)/$(BOARD)/Dave/Generated/src/UART001/UART001.c
 	$(CC) $< -o $@ $(CFLAGS) 
 	
