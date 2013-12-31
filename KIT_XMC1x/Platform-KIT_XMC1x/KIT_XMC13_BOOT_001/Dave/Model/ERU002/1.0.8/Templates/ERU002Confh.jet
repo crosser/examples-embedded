@@ -1,0 +1,89 @@
+<%@ jet package="CodeGenerator" class="eru002confh_template"
+imports="java.util.* com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+
+/*CODE_BLOCK_BEGIN[ERU002_Conf.h]*/
+/**************************************************************************//**
+ *
+ * Copyright (C) 2011 Infineon Technologies AG. All rights reserved.
+ *
+ * Infineon Technologies AG (Infineon) is supplying this software for use with 
+ * Infineon's microcontrollers.  
+ * This file can be freely distributed within development tools that are 
+ * supporting such microcontrollers. 
+ *
+ * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+ * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+ * INFINEON SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, 
+ * OR CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+ *
+********************************************************************************
+**                                                                            **
+**                                                                            **
+** PLATFORM : Infineon XMC4000 Series/XMC1000 series                          **
+**                                                                            **
+** COMPILER : Compiler Independent                                            **
+**                                                                            **
+** AUTHOR   : App Developer                                                   **
+**                                                                            **
+** MAY BE CHANGED BY USER [yes/no]: Yes                                       **
+**                                                                            **
+**                                                                            **
+*******************************************************************************/
+<% String AppBaseuri = "app/eru002/";%>
+/**
+ * @file   ERU002_Conf.h
+ *
+ * Revision History
+ * 25 Jan 2013 v1.0.4 Initial Version
+ *
+ * @brief  Configuration file generated based on UI settings 
+ *         of ERU002 App
+ *
+ */
+#ifndef _CONF_ERU002_H_
+#define _CONF_ERU002_H_
+
+/*****************************************************************************
+** @Defines
+*****************************************************************************/
+
+#include <DAVE3.h>
+<% String ERUuri = "http://www.infineon.com/0.1.28/peripheral/eru/"; %>
+<% String MappedUri = null; %>
+<% String appInst  = null; %>
+<% String UnitInst = null; %>
+<% String ChannelInst = null; %>
+
+<% ArrayList<String> appsList = (ArrayList<String>)(app.getApps("app/eru002/")); %>
+ <%  for (String appIns : appsList ) {
+ appInst = appIns.substring(appIns.lastIndexOf("/")+1);%>
+<% MappedUri = app.getMappedUri(AppBaseuri + appInst + "/ogu"); %>
+<% if((MappedUri != null) && (MappedUri != "")) { %>
+<% UnitInst = MappedUri.substring(ERUuri.length(),MappedUri.indexOf("/ogu/")); %>
+<% ChannelInst = MappedUri.substring(MappedUri.length()-1); %>
+/*Base Address of mapped ERU Module for App Instance <%=appInst%> */
+#define ERU001_<%=appInst%>_ERU	  ERU<%=UnitInst%>
+/* Mapped OGU instance  for App Instance <%=appInst%> */
+#define ERU001_<%=appInst%>_OGU_Y   <%= ChannelInst %>
+<% } %>
+<% else { %>
+/* CHANNEL IS NOT MAPPED */
+<% } %>
+<%} %>
+<% for (String appIns : appsList ) {
+ appInst = appIns.substring(appIns.lastIndexOf("/")+1);%>
+<% MappedUri = app.getMappedUri(AppBaseuri + appInst + "/ogu"); %>
+<% if((MappedUri != null) && (MappedUri != "")) { %>
+extern const ERU002_HandleType ERU002_Handle<%=appInst%>;
+<% } %>
+<% else { %>
+/* OGU NOT MAPPED FOR APP INSTANCE <%=appInst%> */
+<% } %>
+<%} %> 
+
+
+#endif  /* ifndef _CONF_ERU002_H_ */
+
+/*CODE_BLOCK_END*/

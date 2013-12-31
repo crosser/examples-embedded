@@ -30,10 +30,6 @@ void Ex_Scan_scanDoneHandler(uint8_t numDevices) {
     Hal_debugPulse(2);
 }
 
-void Blinker_connectHandler(Em_Status status) {}
-void Blinker_disconnectHandler(Em_Status status) {}
-void Blinker_readWriteHandler(Em_Status status) {}
-
 void Blinker_scanDeviceHandler(Em_Device* device) {
     Hal_debugPulse(1);
 }

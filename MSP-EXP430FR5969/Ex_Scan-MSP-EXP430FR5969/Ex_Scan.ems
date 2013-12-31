@@ -1,8 +1,0 @@
-version = "1.0.0"
-description = "Device Scanning Example"
-
-schema Ex_Scan {
-
-	// insert resource definitions here 
-
-};

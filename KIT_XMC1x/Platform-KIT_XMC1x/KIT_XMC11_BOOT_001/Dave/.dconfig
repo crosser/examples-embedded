@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ProjectConfig>
+    <CodeGenerate>
+        <JETFileMap/>
+    </CodeGenerate>
+    <ResourceReserve/>
+    <Solver>
+        <SolverBndMap>
+            <BindMap MUri="peripheral/usic/0/channel/1" Proxy="app/uart001/0/channel"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/ledts/1" Proxy="app/clk002/0/clkgating_ledts1"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/usic/0" Proxy="app/clk002/0/clkgating_usic"/>
+            <BindMap MUri="peripheral/eru/0/ogu/3" Proxy="app/eru002/0/ogu"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/ccu8/0" Proxy="app/clk002/0/clkgating_ccu8"/>
+            <BindMap MUri="peripheral/scu/0/dco/2" Proxy="app/clk002/0/dco_uri"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/ledts/0" Proxy="app/clk002/0/clkgating_ledts0"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/wdt" Proxy="app/clk002/0/clkgating_wdt"/>
+            <BindMap MUri="peripheral/cpu/0/systick" Proxy="app/systm001/0/syst"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/ccu4/0" Proxy="app/clk002/0/clkgating_ccu4"/>
+            <BindMap MUri="port/p/1/pad/2" Proxy="app/uart001/0/uart_txpin"/>
+            <BindMap MUri="peripheral/cpu/0/nvic/interrupt/6" Proxy="app/nvic002/1/nvicnode"/>
+            <BindMap MUri="port/p/1/pad/3" Proxy="app/uart001/0/uart_rxpin"/>
+            <BindMap MUri="peripheral/eru/0/ers_etl/1" Proxy="app/eru001/0/ers_etl"/>
+            <BindMap MUri="peripheral/cpu/0/nvic/interrupt/9" Proxy="app/nvic002/0/nvicnode"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/vadcshs" Proxy="app/clk002/0/clkgating_vadcshs"/>
+            <BindMap MUri="port/p/0/pad/1" Proxy="app/io004/3/pin"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/rtc" Proxy="app/clk002/0/clkgating_rtc"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/posif/0" Proxy="app/clk002/0/clkgating_posif"/>
+            <BindMap MUri="peripheral/scu/0/ccu/config" Proxy="app/clk002/0/clk_uri"/>
+            <BindMap MUri="port/p/2/pad/0" Proxy="app/io004/4/pin"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/math" Proxy="app/clk002/0/clkgating_math"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/bccu/0" Proxy="app/clk002/0/clkgating_bccu"/>
+            <BindMap MUri="port/p/0/pad/6" Proxy="app/io004/1/pin"/>
+            <BindMap MUri="port/p/2/pad/1" Proxy="app/io002/0/pin"/>
+            <BindMap MUri="port/p/0/pad/0" Proxy="app/io004/2/pin"/>
+            <BindMap MUri="port/p/0/pad/5" Proxy="app/io004/0/pin"/>
+        </SolverBndMap>
+    </Solver>
+</ProjectConfig>
