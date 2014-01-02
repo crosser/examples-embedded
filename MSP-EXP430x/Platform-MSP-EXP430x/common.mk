@@ -1,5 +1,7 @@
 OUTDIR = Output
-EMBUILDER ?=
+EMDIR = Em
+EMBUILDER = em-builder
+COMMAND_PREFIX = $(TOOLS)/$(GCCARCH)-
 SCHEMAFILE = $(APPNAME).ems
 MAIN = $(APPNAME)-Prog
 BINFILE = $(OUTDIR)/$(MAIN).bin
@@ -7,17 +9,29 @@ HEXFILE = $(OUTDIR)/$(MAIN).hex
 OUTFILE = $(OUTDIR)/$(MAIN).out
 OBJECTS = $(OUTDIR)/$(MAIN).obj $(OUTDIR)/$(APPNAME).obj $(OUTDIR)/Hal.obj 
 
-CC = $(TOOLS)/$(GCCARCH)-gcc
-LD = $(TOOLS)/$(GCCARCH)-ld
-OBJCOPY = $(TOOLS)/$(GCCARCH)-objcopy
-SIZE = $(TOOLS)/$(GCCARCH)-size
+CC = $(COMMAND_PREFIX)gcc
+LD = $(COMMAND_PREFIX)ld
+OBJCOPY = $(COMMAND_PREFIX)objcopy
+SIZE = $(COMMAND_PREFIX)size
 
 CFLAGS = -std=gnu99 -O2 -w -ffunction-sections -fdata-sections -fpack-struct=1 -fno-strict-aliasing -fomit-frame-pointer -c -g -I$(PLATFORM)/Hal -IEm $(COPTS)
+
+all: $(OUTFILE)
 
 load: out-check
 	$(EXEC)
 
-build: $(OUTDIR) out-remove $(OUTFILE)
+clean:
+ifeq (,$(findstring Windows,$(OS)))
+	rm -rf $(EMDIR) $(OUTDIR)
+else
+ifneq (,$(wildcard $(EMDIR)))
+	cmd /c rmdir /q /s $(subst /,\,$(EMDIR))
+endif
+ifneq (,$(wildcard $(OUTDIR)))
+	cmd /c rmdir /q /s $(subst /,\,$(OUTDIR))
+endif
+endif
 
 $(OUTDIR):
 ifeq (,$(findstring Windows,$(OS)))
@@ -26,54 +40,29 @@ else
 	cmd /c mkdir $(OUTDIR)
 endif
 
-$(OUTDIR)/$(MAIN).obj: $(MAIN).c Em/$(APPNAME).c
+$(OUTDIR)/$(MAIN).obj: $(MAIN).c $(EMDIR)/$(APPNAME).c | $(OUTDIR)
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/$(APPNAME).obj: Em/$(APPNAME).c
+$(OUTDIR)/$(APPNAME).obj: $(EMDIR)/$(APPNAME).c | $(OUTDIR)
 	$(CC) $< -o $@ $(CFLAGS) 
 
-$(OUTDIR)/Hal.obj: $(PLATFORM)/Hal/Hal.c
+$(OUTDIR)/Hal.obj: $(PLATFORM)/Hal/Hal.c | $(OUTDIR)
 	$(CC) $< -o $@ $(CFLAGS) 
 
-Em/$(APPNAME).c: $(SCHEMAFILE)
-ifneq (,$(EMBUILDER))
-	$(EMBUILDER) -v --root=$(<D) --outdir=Em --jsondir=Em $<
+$(EMDIR)/$(APPNAME).c: $(SCHEMAFILE)
+ifeq (,$(EMMOCO-ROOT))
+	$(EMBUILDER) -v --root=$(<D) --outdir=$(EMDIR) --jsondir=$(EMDIR) $<
 else
 	@echo terminating because of prior schema errors 1>&2
 	@exit 1
 endif
 
-local-clean:
-ifeq (,$(findstring Windows,$(OS)))
-	rm -rf $(OUTDIR)
-else
-ifneq (,$(wildcard $(OUTDIR)))
-	cmd /c rmdir /q /s $(subst /,\,$(OUTDIR))
-endif
-endif
-
-clean: local-clean
-ifeq (,$(findstring Windows,$(OS)))
-	rm -rf $(EM)
-else
-ifneq (,$(wildcard Em))
-	cmd /c rmdir /q /s $(subst /,\,Em)
-endif
-endif
+local-clean: clean
 
 out-check:
 ifeq (,$(wildcard $(OUTFILE)))
 	@echo error: $(OUTFILE): No such file or directory 1>&2
 	@exit 1
-endif
-
-out-remove:
-ifeq (,$(findstring Windows,$(OS)))
-	rm -f $(OUTFILE)
-else
-ifneq (,$(wildcard $(OUTFILE)))
-	cmd /c del /q $(subst /,\,$(OUTFILE))
-endif
 endif
 
 .PHONY: all load clean local-clean out-check
