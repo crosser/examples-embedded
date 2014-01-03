@@ -14,7 +14,6 @@ static void buttonHandler(void) {
     Hal_ledOn();
     Hal_delay(500);
     Hal_ledOff();
-    Hal_debugPulse(1);
     CBroadcast_scan(2000, CBroadcast_PBroadcast);
 }
 
