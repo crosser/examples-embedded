@@ -1,7 +1,7 @@
 OUTDIR = Output
 EMDIR = Em
 EMBUILDER = em-builder
-COMMAND_PREFIX = $(TOOLS)/$(GCCARCH)-
+COMMAND_PREFIX = $(GCCARCH)-
 SCHEMAFILE = $(APPNAME).ems
 MAIN = $(APPNAME)-Prog
 BINFILE = $(OUTDIR)/$(MAIN).bin
@@ -16,7 +16,9 @@ SIZE = $(COMMAND_PREFIX)size
 
 CFLAGS = -std=gnu99 -O2 -w -ffunction-sections -fdata-sections -fpack-struct=1 -fno-strict-aliasing -fomit-frame-pointer -c -g -I$(PLATFORM)/Hal -IEm $(COPTS)
 
-all: $(OUTFILE)
+all: build
+
+build: $(OUTFILE)
 
 load: out-check
 	$(EXEC)
@@ -65,4 +67,4 @@ ifeq (,$(wildcard $(OUTFILE)))
 	@exit 1
 endif
 
-.PHONY: all load clean local-clean out-check
+.PHONY: all build load clean local-clean out-check
