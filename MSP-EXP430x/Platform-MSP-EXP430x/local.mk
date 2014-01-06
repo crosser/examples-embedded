@@ -13,7 +13,7 @@ COMPORT = USB
 #
 # Select one of the boards below by uncommenting one line
 #
-BOARD = MSP_EXP430G2
+#BOARD = MSP_EXP430G2
 #BOARD = MSP_EXP430F5529LP
 #BOARD = MSP_EXP430F5438A
 #BOARD = MSP_EXP430FR5739

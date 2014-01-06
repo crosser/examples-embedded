@@ -13,7 +13,6 @@ else ifeq ($(BOARD), MSP_EXP430FR5969)
     MCU = msp430fr5969
 endif
 
-TOOLS ?= $(EMMOCO-ROOT)/msptools/bin
 GCCARCH = msp430
 
 COPTS = -D$(BOARD) -mmcu=$(MCU)
@@ -23,6 +22,14 @@ ifeq (,$(findstring Windows,$(OS)))
 EXEC = $(EMMOCO-ROOT)/msptools/bin/mspdebug rf2500 "prog $(OUTFILE)" 2>&1
 else
 EXEC = $(EMMOCO-ROOT)/msptools/bin/MSP430Flasher -i $(COMPORT) -m AUTO -e ERASE_MAIN -n $(MCU) -w $(HEXFILE) -v -z [VCC] -g -s 
+endif
+
+var-check:
+ifeq (,$(BOARD))
+	$(error Error: BOARD not defined - edit local.mk in the Platform-MSP-EXP430x project)
+endif
+ifeq (,$(MCU))
+	$(error Error: BOARD "$(BOARD)" not known)
 endif
 
 $(OUTFILE): $(OBJECTS)

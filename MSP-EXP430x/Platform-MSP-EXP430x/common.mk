@@ -35,7 +35,7 @@ ifneq (,$(wildcard $(OUTDIR)))
 endif
 endif
 
-$(OUTDIR):
+$(OUTDIR): | var-check
 ifeq (,$(findstring Windows,$(OS)))
 	mkdir $(OUTDIR)
 else
@@ -67,4 +67,6 @@ ifeq (,$(wildcard $(OUTFILE)))
 	@exit 1
 endif
 
-.PHONY: all build load clean local-clean out-check
+var-check:
+
+.PHONY: all build load clean local-clean out-check var-check
