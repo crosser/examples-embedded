@@ -1,0 +1,18 @@
+version = "1.0.0";
+description = "Broadcast example";
+
+schema Ex_Broadcast {
+
+    enum Code { C1, C2 };
+    
+    typedef num<1,2,0.1> Data;
+
+    packed Info {
+        Code c;
+        Data d[2];
+    };
+
+    Info info {
+        broadcast
+    };
+};
