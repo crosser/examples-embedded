@@ -3,6 +3,21 @@ description = "Device Scanning Example"
 
 schema Ex_Scan {
 
-	// insert resource definitions here 
+//
+// From Em_Device definitions in Em_Types.h
+//  #define Em_ADDRLEN 6
+//  #define Em_NAMELEN 20
+// Schema will report the first 4 device names and rssi values found on the scan
+//
+    typedef string<20> DeviceName;
+    typedef uint8 DeviceAddr[6];
+
+    struct DeviceInfo {
+        DeviceName  name;
+        int8        rssi 
+    };
+    
+    uint8 numDevices { readonly };
+    DeviceInfo devices[4] { readonly };
 
 };
