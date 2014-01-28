@@ -8,7 +8,7 @@
 # Once you know that information, you can plug the other boards back in.
 # To select the specific LaunchPad use: COMPORT = HID0xxx:COMxxx
 #
-COMPORT = USB
+#COMPORT = USB
 #COMPORT = HID0008:COM4
 #
 # Select one of the boards below by uncommenting one line
