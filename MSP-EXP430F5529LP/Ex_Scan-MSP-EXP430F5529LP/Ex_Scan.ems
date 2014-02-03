@@ -9,12 +9,13 @@ schema Ex_Scan {
 //  #define Em_NAMELEN 20
 // Schema will report the first 4 device names and rssi values found on the scan
 //
-    typedef string<20> DeviceName;
+    typedef string<19> DeviceName;
     typedef uint8 DeviceAddr[6];
+    typedef int8 Rssi
 
     struct DeviceInfo {
         DeviceName  name;
-        int8        rssi 
+        Rssi        rssi 
     };
     
     uint8 numDevices { readonly };
