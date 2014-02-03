@@ -1,6 +1,10 @@
 include $(PLATFORM)/common.mk
 include $(PLATFORM)/local.mk
 
+ifeq (,$(COMPORT))
+	COMPORT = USB
+endif
+
 ifeq ($(BOARD), MSP_EXP430G2)
     MCU = msp430g2553
 else ifeq ($(BOARD), MSP_EXP430F5529LP)
