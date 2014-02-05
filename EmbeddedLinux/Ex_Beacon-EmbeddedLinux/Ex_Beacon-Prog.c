@@ -6,11 +6,13 @@ const uint16_t MAJOR = 20;
 const uint16_t MINOR = 500;
 
 static void buttonHandler(void);
+static void commandDoneHandler(void);
 static bool beaconEnabled = false;
 
 void main() {
 	Hal_init();
     Hal_buttonEnable(buttonHandler);
+    Ex_Beacon_onCommandDone(commandDoneHandler);
     Ex_Beacon_setBeaconInfo(UUID, MAJOR, MINOR);
 	Ex_Beacon_start();    
 	Hal_idleLoop();
@@ -28,6 +30,15 @@ static void buttonHandler(void) {
         Ex_Beacon_accept(true);
     }
     beaconEnabled ^= true;
+}
+
+static void commandDoneHandler(void) {
+    if (beaconEnabled) {
+        Hal_connected();
+    }
+    else {
+        Hal_disconnected();
+    }
 }
 
 void Ex_Beacon_connectHandler(void) {
