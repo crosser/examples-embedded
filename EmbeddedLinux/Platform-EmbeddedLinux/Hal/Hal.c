@@ -8,21 +8,17 @@ DESCRIPTION
 
     - an implementation of the Emmoco HAL for Embedded Linux platforms
     - use in conjunction with a board-specific Hal_init() implementation
-    
+
 TOOLING ENVIRONMENT
 
     - GNU make, binutils, gcc
     - Java development kit
     - Emmoco em-builder command line tool
-    
+
 NOTES
 
-    - copy the examples-lp/ file hierarchy to the embedded system
-    - build and execute as root user:
-    
-         cd examples-lp/Blinker-EmbeddedLinux/
-         make
-         sudo ./Output/Blinker-Prog.out
+    - refer to the board-specific Hal_init() implementation file for further
+      information
 
 */
 
@@ -35,19 +31,24 @@ NOTES
 #include <sys/timerfd.h> // for timerfd
 
 static Hal_Handler tickHandler;
+static Hal_Handler buttonHandler;
 static bool ledState;
 int ledFd;
 int uartFd;
 int rxAckFd;
 int txAckFd;
 int timerFd;
+int buttonFd;
+int connectedFd;
 
 /* -------- APP-HAL INTERFACE -------- */
 
 void Hal_buttonEnable(Hal_Handler handler) {
+    buttonHandler = handler;
 }
 
 void Hal_connected(void) {
+    write(connectedFd, "1", 1);
     printf("connected\n");
 }
 
@@ -65,6 +66,7 @@ void Hal_delay(uint16_t msecs) {
 }
 
 void Hal_disconnected(void) {
+    write(connectedFd, "0", 1);
     printf("disconnected\n");
 }
 
@@ -72,15 +74,21 @@ void Hal_idleLoop(void) {
     int fdCount;
     int fdMax = ((txAckFd > uartFd) ? txAckFd : uartFd);
     fdMax = (timerFd > fdMax) ? timerFd : fdMax;
+    fdMax = (buttonFd > fdMax) ? buttonFd : fdMax;
     fdMax++;
     fd_set exceptFdSet;
     fd_set readFdSet;
     char txAckBuf[2];
+    char buttonBuf[2];
     uint8_t uartBuf;
     uint64_t timerBuf;
-     
+
+    read(buttonFd, buttonBuf, sizeof(buttonBuf)); // clear button
+    lseek(buttonFd, 0, SEEK_SET);
+
     while (1) {
         FD_ZERO(&exceptFdSet);
+        FD_SET(buttonFd, &exceptFdSet);
         FD_SET(txAckFd, &exceptFdSet);
         FD_ZERO(&readFdSet);
         FD_SET(uartFd, &readFdSet);
@@ -89,13 +97,13 @@ void Hal_idleLoop(void) {
         if (fdCount == -1) {
             if (errno != EINTR) { // we expect EINTR
                 printf("select() errno %d\n", errno);
-                exit(-1);
+                exit(EXIT_FAILURE);
             }
             continue;
         }
         if (fdCount == 0) {
             printf("select() timeout\n");
-            exit(-1);
+            exit(EXIT_FAILURE);
         }
         if (FD_ISSET(txAckFd, &exceptFdSet)) {
             read(txAckFd, txAckBuf, sizeof(txAckBuf)); // clear EAP_TX_ACK
@@ -121,6 +129,14 @@ void Hal_idleLoop(void) {
                 (*tickHandler)();
             } else {
                 printf("timer - nothing to read\n");
+            }
+        }
+        if (FD_ISSET(buttonFd, &exceptFdSet)) {
+            read(buttonFd, buttonBuf, sizeof(buttonBuf)); // clear button
+            lseek(buttonFd, 0, SEEK_SET);
+            printf("button\n");
+            if (buttonHandler != NULL) {
+                (*buttonHandler)();
             }
         }
     }
