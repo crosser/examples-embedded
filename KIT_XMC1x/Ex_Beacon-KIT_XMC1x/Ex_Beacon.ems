@@ -3,6 +3,11 @@ description = ""
 
 schema Ex_Beacon {
 
-	// insert resource definitions here 
+	struct Info {
+	    uint16 majorId;
+	    uint16 minorId
+	};
+	
+	Info info;
 
 };
