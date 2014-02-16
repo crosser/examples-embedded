@@ -18,7 +18,6 @@ static void buttonHandler(void) {
     Hal_ledOn();
     Hal_delay(500);
     Hal_ledOff();
-    Hal_debugPulse(1);
     numDevicesVal = 0;          // Clear out the schema data before the scan
     memset(devicesVal, 0, sizeof(Ex_Scan_devices_t));
     Ex_Scan_scan(2000, Ex_Scan_Blinker);
@@ -34,7 +33,6 @@ void Ex_Scan_disconnectHandler(void) {
 
 void Ex_Scan_scanDoneHandler(uint8_t numDevices) {
     numDevicesVal = numDevices;
-    Hal_debugPulse(2);
 }
 
 void Ex_Scan_devices_fetch(Ex_Scan_devices_t output) {
@@ -51,7 +49,6 @@ void Blinker_scanDeviceHandler(Em_Device* device) {     // Called once for each 
         devicesVal[numDevicesVal].rssi = device->rssi;
         numDevicesVal++;
     }
-    Hal_debugPulse(1);
 }
 
 void Blinker_ledState_indicator(Blinker_ledState_t data) {
