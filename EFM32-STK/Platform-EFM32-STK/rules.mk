@@ -1,5 +1,6 @@
 include $(PLATFORM)/common.mk
-include $(PLATFORM)/local.mk
+-include $(PLATFORM)/local.mk
+-include local.mk
 
 TOOLS ?= $(EMMOCO-ROOT)/armtools/bin
 GCCARCH = arm-none-eabi

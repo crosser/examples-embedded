@@ -1,4 +1,6 @@
 include $(PLATFORM)/common.mk
+-include $(PLATFORM)/local.mk
+-include local.mk
 
 GCCARCH = msp430
 MCU = msp430g2553

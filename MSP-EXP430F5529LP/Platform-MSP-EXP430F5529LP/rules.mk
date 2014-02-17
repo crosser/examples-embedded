@@ -1,4 +1,6 @@
 include $(PLATFORM)/common.mk
+-include $(PLATFORM)/local.mk
+-include local.mk
 
 TOOLS ?= $(EMMOCO-ROOT)/msptools/bin
 GCCARCH = msp430

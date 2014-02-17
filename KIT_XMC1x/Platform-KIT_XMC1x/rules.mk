@@ -1,5 +1,6 @@
 include $(PLATFORM)/common.mk
-include $(PLATFORM)/local.mk
+-include $(PLATFORM)/local.mk
+-include local.mk
 
 ifeq ($(BOARD), KIT_XMC11_BOOT_001)
     UC_ID = 1101007
