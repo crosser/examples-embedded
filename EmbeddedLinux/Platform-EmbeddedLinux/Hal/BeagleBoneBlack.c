@@ -64,6 +64,7 @@ LINKS
 #include <fcntl.h> // for O_WRONLY
 #include <termios.h> // for tcsetattr()
 #include <sys/timerfd.h> // for timerfd
+#include <dirent.h> // for DIR
 
 extern int ledFd;
 extern int uartFd;
@@ -95,7 +96,27 @@ static void sysWrite(const char *device, const char *buffer) {
 /* -------- APP-HAL INTERFACE -------- */
 
 void Hal_init() {
-    sysWrite("/sys/devices/bone_capemgr.9/slots", "BB-UART1"); // enable UART1
+    struct dirent *de;
+    const char *devices = "/sys/devices/";
+    const char *capemgr = "bone_capemgr.";
+    const char *slots = "/slots";
+    const int capemgrlen = strlen(capemgr);
+    DIR *dir = opendir(devices);
+    while (de = readdir(dir)) { // locate "bone_capemgr.*"
+        if (de->d_type == DT_DIR) {
+            const int dirlen = strlen(de->d_name);
+            if ((dirlen > capemgrlen) && (0 == memcmp(de->d_name, capemgr, capemgrlen))) {
+                char path[strlen(devices) + dirlen + strlen(slots) + 1];
+                memcpy(path, devices, strlen(devices) + 1);
+                strcat(path, de->d_name);
+                strcat(path, slots);
+                sysWrite(path, "BB-UART1"); // enable UART1
+                break;
+            }
+        }
+    }
+    closedir(dir);
+
     sysWrite("/sys/class/gpio/export", "69"); // export GPIO2_5 to user space
     sysWrite("/sys/class/gpio/gpio69/direction", "in"); // use GPIO2_5 for button input
     sysWrite("/sys/class/gpio/gpio69/edge", "falling"); // configure GPIO2_5 for button interrupt

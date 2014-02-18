@@ -28,6 +28,7 @@ NOTES
 #include <stdlib.h> // for exit()
 #include <stdio.h> // for perror()
 #include <errno.h> // for EINTR
+#include <unistd.h> // for STDERR_FILENO
 #include <sys/timerfd.h> // for timerfd
 
 static Hal_Handler tickHandler;
@@ -96,14 +97,10 @@ void Hal_idleLoop(void) {
         fdCount = select(fdMax, &readFdSet, NULL, &exceptFdSet, NULL);
         if (fdCount == -1) {
             if (errno != EINTR) { // we expect EINTR
-                printf("select() errno %d\n", errno);
+                perror("select");
                 exit(EXIT_FAILURE);
             }
             continue;
-        }
-        if (fdCount == 0) {
-            printf("select() timeout\n");
-            exit(EXIT_FAILURE);
         }
         if (FD_ISSET(txAckFd, &exceptFdSet)) {
             read(txAckFd, txAckBuf, sizeof(txAckBuf)); // clear EAP_TX_ACK
@@ -113,22 +110,22 @@ void Hal_idleLoop(void) {
             }
         }
         if (FD_ISSET(uartFd, &readFdSet)) {
-            if (1 != read(uartFd, &uartBuf, 1)) {
-                printf("UART - nothing to read\n");
-            } else {
+            if (1 == read(uartFd, &uartBuf, 1)) {
                 Em_Message_startRx();
                 write(rxAckFd, "0", 1); // EAP_RX_ACK clear
                 write(rxAckFd, "1", 1); // EAP_RX_ACK set
                 if (Em_Message_addByte(uartBuf)) {
                     Em_Message_dispatch();
                 }
+            } else {
+                printf(STDERR_FILENO, "UART - nothing to read\n");
             }                 
         }
         if (FD_ISSET(timerFd, &readFdSet)) {
             if (sizeof(uint64_t) == read(timerFd, &timerBuf, sizeof(uint64_t))) {
                 (*tickHandler)();
             } else {
-                printf("timer - nothing to read\n");
+                printf(STDERR_FILENO, "timer - nothing to read\n");
             }
         }
         if (FD_ISSET(buttonFd, &exceptFdSet)) {
