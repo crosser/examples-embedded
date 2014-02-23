@@ -1,5 +1,6 @@
 include $(PLATFORM)/common.mk
-include $(PLATFORM)/local.mk
+-include $(PLATFORM)/local.mk
+-include local.mk
 
 TOOLS ?= $(WINAVR-PATH)/bin
 GCCARCH = avr
