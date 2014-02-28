@@ -4,14 +4,14 @@
 static void buttonHandler(void);
 static void tickHandler(void);
 
-Ex_Broadcast_info_t infoVal = 0;
-bool broadcasting = true;
+Ex_Broadcast_info_t infoVal = 0;                    // Initial broadcast value
+bool sendInfoFlag = true;                           // Power up broadcasting
 
 void main() {
     Hal_init();
     Ex_Broadcast_start();
     Hal_buttonEnable(buttonHandler);
-    Hal_tickStart(2000, tickHandler);
+    Hal_tickStart(2000, tickHandler);               // 2 sec tick
     Hal_idleLoop();
 }
 
@@ -23,8 +23,8 @@ static void buttonHandler(void) {
     Hal_ledOn();
     Hal_delay(500);                                 // longer blink to show button push received
     Hal_ledOff();
-    broadcasting = !broadcasting;                   // toggle broadcasting
-    if (broadcasting) {
+    sendInfoFlag = !sendInfoFlag;                   // toggle sendInfoFlag
+    if (sendInfoFlag) {
         Ex_Broadcast_info_broadcast();              // broadcast the current value, if now on.
     }
     else {
@@ -36,7 +36,7 @@ static void buttonHandler(void) {
  *             -- short blink of light each broadcast
  */
 static void tickHandler(void) {
-    if (broadcasting) {
+    if (sendInfoFlag) {
         Hal_ledOn();
         Hal_delay(100);                             // short blink to show "tick" while broadcasting
         Hal_ledOff();
