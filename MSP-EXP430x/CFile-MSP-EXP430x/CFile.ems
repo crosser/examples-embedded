@@ -3,6 +3,11 @@ description = ""
 
 schema CFile {
 
-	// insert resource definitions here 
+    typedef string<19> DeviceName;              // device names up to 19 bytes
+
+    uint8 numEx_FileDevicesSeen { readonly };   // number of Ex_File devices seen on scan
+    DeviceName Ex_FileDeviceName { readonly };  // name of Ex_File device connected
+    int32 numBytesRead { readonly };            // fileSize transferred
+    uint8 seed { readonly };                    // first byte of file transferred
 
 };

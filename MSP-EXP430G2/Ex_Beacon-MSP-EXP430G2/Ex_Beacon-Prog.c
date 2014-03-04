@@ -2,12 +2,12 @@
 #include "Hal.h"
 
 const uint8_t UUID[] = {0x00,0x11,0x22,0x33,0x44,0x55,0x66,0x77,0x88,0x99,0xAA,0xBB,0xCC,0xDD,0xEE,0xFF};
-const int8_t POWER = -50;
+const int8_t POWER = -59;						// Approx. RSSI at 1m distance
 
 static void buttonHandler(void);
 static void commandDoneHandler(void);
 
-static bool beaconEnabled = false;
+static bool beaconEnabled = true;				// Start up as a Beacon
 static Ex_Beacon_info_t infoVal = {20, 500};
 static bool restartFlag = false;
 
@@ -24,7 +24,6 @@ static void buttonHandler(void) {
     Hal_ledOn();
     Hal_delay(500);
     Hal_ledOff();
-    Hal_debugPulse(1);
     if (!beaconEnabled) {
         Ex_Beacon_beacon(0);
     }
@@ -49,7 +48,7 @@ void Ex_Beacon_connectHandler(void) {
 
 void Ex_Beacon_disconnectHandler(void) {
     Hal_disconnected();
-    if (restartFlag) {
+    if (restartFlag) {				// Must restart if major / minor change
         restartFlag = false;        
         Ex_Beacon_setBeaconInfo(UUID, infoVal.majorId, infoVal.minorId, POWER);
         Ex_Beacon_reset();

@@ -9,9 +9,9 @@ bool sendInfoFlag = true;                           // Power up broadcasting
 
 void main() {
     Hal_init();
-    Ex_Broadcast_start();
     Hal_buttonEnable(buttonHandler);
     Hal_tickStart(2000, tickHandler);               // 2 sec tick
+    Ex_Broadcast_start();
     Hal_idleLoop();
 }
 
