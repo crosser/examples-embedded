@@ -1,8 +1,18 @@
-version = "1.0.0"
-description = ""
+version = "2.0.0"
+description = "Demonstration of central scanning for Ex_Broadcast devices"
 
 schema CBroadcast {
 
-	// insert resource definitions here 
+    typedef string<19> DeviceName;                      // device names up to 19 bytes
+    typedef uint32 Info;                                // broadcast info
+    struct DeviceSeen {
+        DeviceName name;                                // name of Ex_Broadcast device seen on scan
+        uint8 broadcastOn;                              // 0 => broadcast off, 1 => broadcast on
+        Info info;                                      // info value.  0 indicates broadcast off
+    }
+
+    uint8 numEx_BroadcastDevicesSeen { readonly };      // number of Ex_Broadcast devices seen on scan
+    uint8 numEx_BroadcastDevicesSaved { readonly };     // number of Ex_Broadcast devices saved
+    DeviceSeen ex_broadcastDevices[2] { readonly };     // first few Ex_Broadcast devices seen
 
 };

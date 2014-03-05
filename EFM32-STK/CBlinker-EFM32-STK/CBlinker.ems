@@ -1,8 +1,11 @@
-version = "1.0.0"
-description = ""
+version = "2.0.0"
+description = "Demonstration of central connection to a Blinker device"
 
 schema CBlinker {
 
-	// insert resource definitions here 
+    typedef string<19> DeviceName;              // device names up to 19 bytes
+
+    uint8 numBlinkerDevicesSeen { readonly };   // number of Blinker devices seen on scan
+    DeviceName blinkerDeviceName { readonly };  // name of Blinker device connected
 
 };
