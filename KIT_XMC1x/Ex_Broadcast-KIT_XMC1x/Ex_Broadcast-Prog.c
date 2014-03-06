@@ -6,12 +6,13 @@ static void tickHandler(void);
 
 Ex_Broadcast_info_t infoVal = 0;                    // Initial broadcast value
 bool sendInfoFlag = true;                           // Power up broadcasting
+bool started = false;								// Workaround for bug
 
 void main() {
     Hal_init();
-    Ex_Broadcast_start();
     Hal_buttonEnable(buttonHandler);
     Hal_tickStart(2000, tickHandler);               // 2 sec tick
+    Ex_Broadcast_start();
     Hal_idleLoop();
 }
 
@@ -36,7 +37,7 @@ static void buttonHandler(void) {
  *             -- short blink of light each broadcast
  */
 static void tickHandler(void) {
-    if (sendInfoFlag) {
+    if (sendInfoFlag && started) {
         Hal_ledOn();
         Hal_delay(100);                             // short blink to show "tick" while broadcasting
         Hal_ledOff();
@@ -52,7 +53,8 @@ void Ex_Broadcast_connectHandler(void) {
 }
 
 void Ex_Broadcast_disconnectHandler(void) {
-    Hal_disconnected();
+	started = true;									// flags arrival of first disconnect upon reset.
+	Hal_disconnected();
 }
 
 void Ex_Broadcast_info_fetch(Ex_Broadcast_info_t* output) {
