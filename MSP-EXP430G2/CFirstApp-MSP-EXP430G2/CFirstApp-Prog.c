@@ -125,8 +125,8 @@ static void doDisconnect(void) {
 }
 
 /**
- * ----- doRead -----
- * Reads data from FirstApp device.
+ * ----- doGetValue -----
+ * Gets value out of the iobuf and puts it into data.
  * if this is the first read, then go to doWrite next
  * otherwise, go to disConnect next.
  *
@@ -137,15 +137,33 @@ static void doDisconnect(void) {
  * @param   none
  * @return  none
  */
-static void doRead(void) {
+static void doGetValue(void) {
+    data = *PFirstApp_data_iobuf();                     // Read data value out of io buffer
     if (firstRead) {
-        CFirstApp_connectHandler();                     // Do the connectHandler callback.
         firstRead = false;
-        PFirstApp_data_read(doWrite);                   // Read initial data, then doWrite
+        doWrite();
     }
     else {
-        PFirstApp_data_read(doDisconnect);              // Read final data, then disconnect
+        doDisconnect();
     }
+}
+
+/**
+ * ----- doRead -----
+ * Reads data from FirstApp device.
+ * if this is the first read, turn on the red LED
+ *
+ * Callbacks:
+ *   doGetValue once complete
+ *
+ * @param   none
+ * @return  none
+ */
+static void doRead(void) {
+    if (firstRead) {
+        CFirstApp_connectHandler();                     // Turn on the red LED.
+    }
+    PFirstApp_data_read(doGetValue);                    // Read initial data, then doGetValue
 }
 
 /**
@@ -179,7 +197,6 @@ static void doScan(void) {
  * @return  none
  */
 static void doWrite(void) {
-    data = *PFirstApp_data_iobuf();                     // Read data value out of io buffer
     incrementData();
     *PFirstApp_data_iobuf() = data;                     // Put incremented value into io buffer
     PFirstApp_data_write(doRead);                       // Now write it back to FirstApp device
