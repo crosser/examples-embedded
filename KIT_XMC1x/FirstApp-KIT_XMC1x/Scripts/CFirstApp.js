@@ -6,25 +6,32 @@ var Shell;
 var Schema = require('../Em/FirstApp.js');							// Load the schema.js file
 
 var sCount;
+var sDevice
 
 /* -------- doScan -------- */
 function doScan() {
 	Shell.log("scanning...");
 	Em.ConnectionMgr.scanDevices(500, function (err, devList) {
-		var dev = devList[0];
-		if (dev && dev.schemaName == 'FirstApp') {
-			doOpen(dev);
+		for (var i = 0; i < devList.length; i++) {
+			var dev = devList[i];
+			Shell.log("found %s, rssi = %d", dev.deviceId, dev.rssi);
+			if (dev.schemaId != null) {
+				sDevice = dev;
+			}
+		}			
+		if (sDevice) {
+			doOpen();
 		}
 		else {
-			Shell.exit("no device found");
+			Shell.exit("no FirstApp device found");
 		}
 	});
 }
 
 /* -------- doOpen -------- */
 function doOpen(dev) {
-	Em.ConnectionMgr.openDevice(dev, function (err) {
-		Shell.log("opened %s", dev.deviceName);
+	Em.ConnectionMgr.openDevice(sDevice, function (err) {
+		Shell.log("opened %s", sDevice.deviceName);
 		doRead();
 	});
 }
@@ -65,7 +72,8 @@ function onDisconnect() {
 exports.run = function(args, Shell_M, Em_M) {
 	Shell = Shell_M;
 	Em = Em_M;
+    Em.ConnectionMgr.addSchema(Schema);
 	Em.ConnectionMgr.onDisconnect(onDisconnect);
-	sCount = args[0] ? Number(args[0]) : 1;
+	sCount = args[0] ? Number(args[0]) : 3;
 	doScan();
 };

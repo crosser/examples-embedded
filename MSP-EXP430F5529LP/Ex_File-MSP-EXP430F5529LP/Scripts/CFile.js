@@ -74,12 +74,13 @@ function doRead() {
 function doScan() {
 	curDevice = false;
 	Em.ConnectionMgr.scanDevices(500, function (err, devList) {
-		Shell.log("Scan for peripheral devices found:  %s", JSON.stringify(devList, ["deviceName"]));
-		devList.forEach(function (dev) {
-			if (!curDevice && dev.schemaName == "Ex_File" && dev.schemaHash == "236.42.26.0.106.170") {
+		for (var i = 0; i < devList.length; i++) {
+			var dev = devList[i];
+			if (dev.schemaId != null) {
+				Shell.log("Found %s", dev.deviceName)
 				curDevice = dev;
 			}
-		});
+		}
 		if (curDevice) {
 			doOpen();
 		}
