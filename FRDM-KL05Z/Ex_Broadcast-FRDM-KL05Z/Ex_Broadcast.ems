@@ -1,0 +1,9 @@
+version = "2.0.0";
+description = "Broadcast example";
+
+schema Ex_Broadcast {
+
+    uint32 info {
+        broadcast
+    };
+};

@@ -1,0 +1,12 @@
+version = "2.0.0"
+description = "Demonstration of central connection to a FirstApp device"
+
+schema CFirstApp {
+
+    typedef string<19> DeviceName;              // device names up to 19 bytes
+
+    uint8 numFirstAppDevicesSeen { readonly };  // number of FirstApp devices seen on scan
+    DeviceName firstAppDeviceName { readonly }; // name of FirstApp device connected
+    int16 data { readonly };                    // data resource value
+
+};

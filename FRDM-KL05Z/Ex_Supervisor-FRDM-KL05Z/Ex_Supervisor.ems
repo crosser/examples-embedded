@@ -1,0 +1,12 @@
+version = "1.0.0";
+description = "Supervisory functions example";
+
+schema Ex_Supervisor {
+
+    enum Fxn {
+        NONE, DISCONNECT, RESTART, ACCEPT
+    };
+    
+    Fxn fxn;
+
+}
