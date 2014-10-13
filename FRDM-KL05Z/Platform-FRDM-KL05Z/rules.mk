@@ -8,7 +8,11 @@ GCCARCH = arm-none-eabi
 COPTS = -mthumb -mcpu=cortex-m0 -I$(PLATFORM)/ProcessorExpert/Generated_Code -I$(PLATFORM)/ProcessorExpert/Sources -I$(PLATFORM)/ProcessorExpert/Static_Code/IO_Map -I$(PLATFORM)/ProcessorExpert/Static_Code/PDD 
 LDOPTS = -Map=$(OUTDIR)/$(MAIN).map -T $(PLATFORM)/ProcessorExpert/Project_Settings/Linker_Files/ProcessorExpert.ld --gc-sections
 
+ifeq (,$(findstring Windows,$(OS)))
+EXEC = $(EMMOCO-ROOT)/armtools/JLink/load.sh $(CURDIR)/Output/$(MAIN) MKL05Z32XXX4
+else
 EXEC = cmd /c copy $(OUTDIR)\$(MAIN).bin d:
+endif
 
 COMPONENTS = \
     $(OUTDIR)/BUTTON.obj \
