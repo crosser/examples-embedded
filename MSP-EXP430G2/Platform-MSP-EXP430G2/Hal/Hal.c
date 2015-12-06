@@ -67,11 +67,11 @@
 #define UART_WATCH_ENABLE()         (TA1CCR1 = TA1R + UART_WATCHDOG_PERIOD, TA1CCTL1 = CCIE)    // Set CCR1, and Enable CCR1 Interrupt
 
 #ifdef __GNUC__
-#define DINT()                      (__disable_interrupt())
-#define EINT()                      (__enable_interrupt())
+#define DINT()                      __disable_interrupt()
+#define EINT()                      __enable_interrupt()
 #define INTERRUPT
-#define SLEEP()                     (_BIS_SR(LPM3_bits + GIE))
-#define WAKEUP()                    (_BIC_SR_IRQ(LPM3_bits))
+#define SLEEP()                     _BIS_SR(LPM3_bits + GIE)
+#define WAKEUP()                    _BIC_SR_IRQ(LPM3_bits)
 #endif
 
 #ifdef __TI_COMPILER_VERSION__
@@ -261,16 +261,14 @@ void Hal_tickStart(uint16_t msecs, Hal_Handler handler) {
 /* -------- SRT-HAL INTERFACE -------- */
 
 uint8_t Em_Hal_lock(void) {
+        uint8_t key = _get_interrupt_state();
     #ifdef __GNUC__
-        uint8_t key = READ_SR & 0x8;
         __disable_interrupt();
-        return key;
     #endif
     #ifdef __TI_COMPILER_VERSION__
-        uint8_t key = _get_interrupt_state();
         _disable_interrupt();
-        return key;
     #endif
+        return key;
 }
 
 void Em_Hal_reset(void) {
@@ -291,12 +289,7 @@ void Em_Hal_startSend() {
 }
 
 void Em_Hal_unlock(uint8_t key) {
-    #ifdef __GNUC__
-        __asm__("bis %0,r2" : : "ir" ((uint16_t) key));
-    #endif
-    #ifdef __TI_COMPILER_VERSION__
         _set_interrupt_state(key);
-    #endif
 }
 
 void Em_Hal_watchOff(void) {
